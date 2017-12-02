@@ -1,9 +1,9 @@
 <?php
-if (defined('ENVITONMENT') && ENVIRONMENT == 'development' ) {
+if (defined('ENVIRONMENT') && ENVIRONMENT == 'development' ) {
   define('DB_DATABASE', 'selldarity');
-  define('DB_USERNAME', 'root');
+  define('DB_USERNAME', 'way');
   define('DB_PASSWORD', 'way11229');
-  define('DB_HOST', '127.0.0.1');
+  define('DB_HOST', 'localhost');
 } else {
   define('DB_DATABASE', '');
   define('DB_USERNAME', '');

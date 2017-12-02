@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 if (isset($_SERVER['HTTP_HOST'])) {
   if (defined('ENVIRONMENT') && ENVIRONMENT === 'development') {
-    $config['base_url'] = $_SERVER['HTTP_HOST'].'/selldarity';
+    $config['base_url'] = $_SERVER['HTTP_HOST'].'/selldarity/';
   } else {
     $config['base_url'] = $_SERVER['HTTP_HOST'];
   }

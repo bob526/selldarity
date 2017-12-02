@@ -9,10 +9,10 @@ class SELLDARITY_Controller extends CI_Controller {
     public function __construct() {
       parent::__construct();
       include_once "models/inc.php";
+      $this->load->helper('url');
 
       $this->_now = $this->input->server('REQUESR_TIME');
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
-      
     }
 }

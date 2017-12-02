@@ -7,12 +7,12 @@ class Main extends SELLDARITY_Controller {
   public function __construct() {
     parent::__construct();
     
-   /* try {
+    try {
       $this->MainModel = Model::load("MainModel");
     } catch(Exception $e) {
       print_r(json_decode($e->getMessage()));
       exit;
-    }*/
+    }
   }
 
   public function mainPage() {
