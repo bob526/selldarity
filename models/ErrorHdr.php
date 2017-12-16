@@ -2,7 +2,7 @@
 class ErrorHdr {
   private $_errcode = ERRCODE_INIT;
   private $_errrmsg = '';
-  private $_errindo = array();
+  private $_errinfo = array();
   private $_result = array();
 
   public function __construct($errcode = ERRCODE_INIT, $errinfo = array()) {
@@ -19,7 +19,7 @@ class ErrorHdr {
       ERRCODE_INVALID_PARAM => 'invalid parameters',
     );
 
-    if (isset(msgs[$errcode])) {
+    if (isset($msgs[$errcode])) {
       $this->_errcode = $errcode;
       $this->_errmsg = $msgs[$errcode];
       if (!is_array($errinfo)) {

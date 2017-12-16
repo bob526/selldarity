@@ -8,12 +8,8 @@ class CommodityModel extends ModelBase {
   }
   
   public function getAllCommodity() {
-    global $_db;
     $sql = "SELECT C.*, S.name as sortName FROM {$this->_table} as C, sort as S WHERE C.sortId = S.idx ORDER BY idx ASC";
-    $inputarr = array();
-    $dbh = $_db->prepare($sql);
-    $dbh->execute($inputarr);
 
-    return $dbh->fetchAll(PDO::FETCH_ASSOC);
+    return $this->runSql($sql)->fetchAll(PDO::FETCH_ASSOC);
   }
 }

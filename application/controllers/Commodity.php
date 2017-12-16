@@ -16,13 +16,11 @@ class Commodity extends SELLDARITY_Controller {
   }
 
   public function mainPage() {
-    $data = array();
-    
     $allCommodity = $this->CommodityModel->getAllCommodity();
+    $data = $this->_getLayoutData();
     $data["allCommodity"] = $this->_resortCommodityData($allCommodity = $this->CommodityModel->getAllCommodity());
-    print_r($data);
-    exit;
-
+    
+    $this->load->view('mainPage/home', $data);
   }
 
   private function _resortCommodityData($allData) {

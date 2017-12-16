@@ -15,4 +15,12 @@ class SELLDARITY_Controller extends CI_Controller {
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
     }
+
+    protected function _getLayoutData() {
+      $data = array();
+      $data['baseUrl'] = $this->_baseUrl;
+      $data['layouthead'] = $this->load->view('layout/layouthead', $data, true);
+      $data['layoutbody'] = $this->load->view('layout/layoutbody', $data, true);
+      return $data;
+    }
 }
