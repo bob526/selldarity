@@ -23,6 +23,11 @@ class Commodity extends SELLDARITY_Controller {
     $this->load->view('mainPage/home', $data);
   }
 
+  public function test() {
+    print_r("okok");
+    exit;
+  }
+
   private function _resortCommodityData($allData) {
     $rtn = array();
     foreach($allData as $data) {
