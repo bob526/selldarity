@@ -1,8 +1,8 @@
 <?php
 if (defined('ENVIRONMENT') && ENVIRONMENT == 'development' ) {
   define('DB_DATABASE', 'selldarity');
-  define('DB_USERNAME', 'way');
-  define('DB_PASSWORD', 'way11229');
+  define('DB_USERNAME', 'nullset');
+  define('DB_PASSWORD', 'nullset');
   define('DB_HOST', 'localhost');
 } else {
   define('DB_DATABASE', '');
