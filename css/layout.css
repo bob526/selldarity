@@ -56,3 +56,14 @@ header div img {
 .rightHeader * {
   margin: 0 15px;
 }
+
+.register {
+  cursor: pointer;
+}
+
+.signIn {
+  background-color: transparent;
+  border: 1px #000000 solid;
+  border-radius: 100px;
+  padding: 5px 10px;
+}

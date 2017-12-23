@@ -5,8 +5,8 @@
     </div>
     <div class="rightHeader pure-u-3-4">
       <div class="leftHeaderInfo">
-        <p>註冊</p>
-        <button>登入</button>
+        <p class="register" id="register">註冊</p>
+        <button class="signIn">登入</button>
       </div>
       <div class="rightHeaderInfo">
         <img src="<?=$baseUrl?>/css/images/notification.svg" class="notification"/>
