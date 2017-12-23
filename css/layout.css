@@ -35,14 +35,14 @@ header div p {
   padding: 15px 5px;
 }
 
-header div img {
-  display: inline;
-}
-
 .leftArea {
   float: left;
 }
 
 .rightArea {
   float: right;
+}
+
+.leftArea img {
+  height: 50px;
 }

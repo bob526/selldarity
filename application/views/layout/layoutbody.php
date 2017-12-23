@@ -1,6 +1,6 @@
 <header>
   <div class="leftArea">  
-    <p>Selldarity</p>
+    <img src="<?=$baseUrl?>/css/images/Selldarity_icon_chinese.svg" class="logo"/>
   </div>
   <div class="rightArea">
     <p>註冊</p>
