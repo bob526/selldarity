@@ -1,7 +1,7 @@
 <header>
   <div class="pure-g">
     <div class="leftArea pure-u-1-4">  
-      <p>Selldarity</p>
+      <img src="<?=$baseUrl?>/css/images/Selldarity_icon_chinese.svg" class="logo"/>
     </div>
     <div class="rightArea pure-u-3-4">
       <p>註冊</p>

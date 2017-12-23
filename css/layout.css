@@ -44,3 +44,7 @@ header div img {
   width: 2.5%;
   height: auto;
 }
+
+.leftArea img {
+  height: 50px;
+}
