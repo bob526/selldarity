@@ -36,15 +36,23 @@ header div p {
 }
 
 header div img {
-  padding-top: 10px;
   display: inline;
 }
 
-.notification, .question, .search {
-  width: 2.5%;
+.logo {
+  width: 10vw;
   height: auto;
 }
 
-.leftArea img {
-  height: 50px;
+.notification, .question, .search {
+  width: 3%;
+  height: auto;
+}
+
+.rightHeader {
+  text-align: right;
+}
+
+.rightHeader * {
+  margin: 0 15px;
 }
