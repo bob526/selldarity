@@ -1,0 +1,82 @@
+.close {
+  color: #FFF;
+  float: right;
+  font-size: 60px;
+}
+
+.close:hover,
+.close:focus {
+  color: #aaa;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.registerArea {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  margin-top: -60px;
+  padding-top: 50px;
+}
+
+.registerWindow__outside {
+  width: 500px;
+  height: 600px;
+  position: fixed;
+  left: 50%;
+  margin-left: -250px;
+}
+
+.registerWindow__inside {
+  background-color: #FFFFFF;
+  width: 400px;;
+  height: 430px;
+  margin: 50px;
+}
+
+.registerwindow__inside__title {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+
+.registerWindow__inside__title img {
+  display: block;
+  padding: 10px 5px;
+  margin: 0px auto;
+}
+
+.registerWindow__inside__content {
+  padding: 0px 30px;
+  text-align: center;
+}
+
+.registerWindow__inside__content p {
+  padding: 10px 0px;
+}
+
+.registerWindow__inside__content input {
+  width: 100%;
+  font-size: 15px;
+  margin: 10px auto;
+  display: block;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.registerWindow__inside__content input[type="submit"] {
+  background-color: red;
+  color: #FFF;
+  border-style: none;
+  border-radius: 20px;
+}
+
+.registerToSignIn {
+  color: #0066FF;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
