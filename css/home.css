@@ -1,3 +1,16 @@
+.aboutUs {
+  text-align: left;
+  font-size: 15px; 
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.congratulation {
+  padding: 25px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
 .close {
   color: #FFF;
   float: right;
@@ -9,6 +22,15 @@
   color: #aaa;
   text-decoration: none;
   cursor: pointer;
+}
+
+.shareLink {
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.shareLink a {
+  color: #0099FF;
 }
 
 .registerArea {
@@ -53,7 +75,7 @@
   text-align: center;
 }
 
-.registerWindow__inside__content p {
+.registerWindow__inside__content .registerInput p {
   padding: 10px 0px;
 }
 
@@ -80,3 +102,12 @@
   cursor: pointer;
 }
 
+.registeredInfo {
+  display:none;
+}
+
+.userInfo {
+  font-size: 15px;
+  color: #aaa;
+  padding-bottom: 25px;
+}

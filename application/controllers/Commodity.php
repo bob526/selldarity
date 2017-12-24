@@ -1,5 +1,7 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
+define("NONE_ERROR", 0);
+
 class Commodity extends SELLDARITY_Controller {
   
   private $mainModel = null;

@@ -20,6 +20,7 @@ time, mark, audio, video {
 
 input, button, a {
   outline: none;
+  text-decoration: none;
 }
 
 body {

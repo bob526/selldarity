@@ -5,20 +5,27 @@ class SELLDARITY_Controller extends CI_Controller {
     protected $_formattedNow = '';
     protected $_baseUrl = '';
     protected $errorPage = '';
+    protected $_uidx = '';
     
     public function __construct() {
       parent::__construct();
       include_once "models/inc.php";
       $this->load->helper('url');
+      $this->load->helper('cookie');
+      $this->load->library('session');
 
-      $this->_now = $this->input->server('REQUESR_TIME');
+      $this->_now = $this->input->server('REQUEST_TIME');
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
+      $this->_uidx = $this->session->userdata('udix');
     }
 
     protected function _getLayoutData() {
       $data = array();
       $data['baseUrl'] = $this->_baseUrl;
+      $data['uidx'] = $this->_uidx;
+      $data['userName'] = $this->session->userdata('name');
+      $data['LV'] = $this->session->userdata('LV');
       $data['layouthead'] = $this->load->view('layout/layouthead', $data, true);
       $data['layoutbody'] = $this->load->view('layout/layoutbody', $data, true);
       return $data;
