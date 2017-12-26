@@ -10,7 +10,7 @@
           <p class="level">LV.<?=$LV?></p>
         <?php else : ?>
           <p class="register" id="register">註冊</p>
-          <button class="signIn">登入</button>
+          <button class="signIn" id="signIn">登入</button>
         <?php endif; ?>
       </div>
       <div class="rightHeaderInfo">

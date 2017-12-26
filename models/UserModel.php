@@ -8,16 +8,17 @@ class UserModel extends ModelBase {
   }
   
   public function getUserByEmail($email) {
-    $sql = "SELECT name FROM {$this->_table} WHERE email = ?";
+    $sql = "SELECT * FROM {$this->_table} WHERE email = ?";
     $inputarr = array($email);
     return $this->runSql($sql, $inputarr)->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function insert($email, $password, $userName, $now) {
+  public function insert($email, $password, $userName, $verCode, $now) {
     $inputarr = array(
       "email" => $email,
       "password" => $password,
       "name" => $userName,
+      "verCode" => $verCode,
       "create_time" => $now,
       "update_time" => $now,
     );
