@@ -30,6 +30,7 @@ body {
 
 header {
   background-color: #EEEEEE;
+  position: fix;
 }
 
 header div {
@@ -46,12 +47,12 @@ header div img {
 }
 
 .logo {
-  width: 10vw;
+  width: 156.25px;
   height: auto;
 }
 
 .notification, .question, .search {
-  width: 3%;
+  width: 30px;
   height: auto;
 }
 
@@ -59,8 +60,9 @@ header div img {
   text-align: right;
 }
 
-.rightHeader * {
+.rightHeader * , .leftHeader *{
   margin: 0 15px;
+  vertical-align: middle;
 }
 
 .register {

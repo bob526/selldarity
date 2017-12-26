@@ -1,4 +1,8 @@
 $(document).ready(() => {
+  $(window).resize(function () {
+    //$(".logo").css("width", $(".leftHeader").width());
+  });
+
   $("#register").click(() => {
    $("#registerArea").css("display", "block");
   });
