@@ -36,10 +36,25 @@
       </div>
     </div>
   </div>
-
-  <div class="pure-g">
-    <div class="pure-u-2-3"></div>
-    <div class="pure-u-1-3"></div>
+  <div class="mainPage">
+    <div class="pure-g">
+      <div class="leftBigADArea pure-u-2-3">
+        <div class="leftBigAD"></div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="rightSmallTopADArea">
+          <div class="rightSmallTopAD"></div>
+        </div>
+        <div class="rightSmallDownADArea">
+          <div class="rightSmallDownAD"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-1-7"></div>
+      <div class="pure-u-4-7"></div>
+      <div class="pure-u-2-7"></div>
+    </div>
   </div>
 </body>
 <script>

@@ -24,13 +24,15 @@ input, button, a {
 }
 
 body {
-  background-color: #EEEEEE;
   height: 100%;
+  background-color: #EEEEEE;
 }
 
 header {
+  width: 100%;
+  top: 0;
+  position: fixed;
   background-color: #EEEEEE;
-  position: fix;
 }
 
 header div {
@@ -46,14 +48,37 @@ header div img {
   display: inline;
 }
 
+.mainPage {
+  margin-top: 50px;
+}
+
 .logo {
   width: 156.25px;
   height: auto;
 }
 
+.leftBigAD {
+  min-height: 400px;
+  margin-right: 10px;
+  background: #fff;
+}
+
 .notification, .question, .search {
   width: 30px;
   height: auto;
+}
+
+.rightSmallTopAD, .rightSmallDownAD {
+  min-height: 195px;
+  background: #fff;
+}
+
+.rightSmallTopAD {
+  margin-bottom: 10px;
+}
+
+.rightSmallDownAD {
+  margin-top: 10px;
 }
 
 .rightHeader {
