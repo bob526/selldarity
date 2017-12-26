@@ -29,11 +29,11 @@
   font-size: 20px;
 }
 
-.shareLink a {
+.forgotLink a, .shareLink a {
   color: #0099FF;
 }
 
-.registerArea {
+.dialogArea {
   display: none;
   position: absolute;
   z-index: 100;
@@ -44,7 +44,7 @@
   padding-top: 50px;
 }
 
-.registerWindow__outside {
+.dialogWindow__outside {
   width: 500px;
   height: 600px;
   position: fixed;
@@ -52,34 +52,36 @@
   margin-left: -250px;
 }
 
-.registerWindow__inside {
+.dialogWindow__inside {
   background-color: #FFFFFF;
   width: 400px;;
   height: 430px;
   margin: 50px;
 }
 
-.registerwindow__inside__title {
+.dialogWindow__inside__title {
   width: 100%;
   border-bottom: 1px solid #aaa;
 }
 
-.registerWindow__inside__title img {
+.dialogWindow__inside__title img {
   display: block;
   padding: 10px 5px;
   margin: 0px auto;
 }
 
-.registerWindow__inside__content {
+.signInWindow__inside__content, .registerWindow__inside__content {
+  display: none;
   padding: 0px 30px;
   text-align: center;
 }
 
-.registerWindow__inside__content .registerInput p {
+.signInWindow__inside__content p, .registerWindow__inside__content .registerInput p {
   padding: 10px 0px;
+  font-weight: bold;
 }
 
-.registerWindow__inside__content input {
+.signInWindow__inside__content input, .registerWindow__inside__content input {
   width: 100%;
   font-size: 15px;
   margin: 10px auto;
@@ -89,14 +91,14 @@
   border-radius: 5px;
 }
 
-.registerWindow__inside__content input[type="submit"] {
+.signInWindow__inside__content input[type="submit"], .registerWindow__inside__content input[type="submit"] {
   background-color: red;
   color: #FFF;
   border-style: none;
   border-radius: 20px;
 }
 
-.registerToSignIn {
+.signInToRegister, .registerToSignIn {
   color: #0066FF;
   padding-left: 5px;
   cursor: pointer;
@@ -104,6 +106,12 @@
 
 .registeredInfo {
   display:none;
+}
+
+.rememberMe {
+  text-align: left;
+  font-weight: normal;
+  color: #aaa;
 }
 
 .userInfo {

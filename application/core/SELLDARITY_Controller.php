@@ -11,13 +11,12 @@ class SELLDARITY_Controller extends CI_Controller {
       parent::__construct();
       include_once "models/inc.php";
       $this->load->helper('url');
-      $this->load->helper('cookie');
       $this->load->library('session');
 
       $this->_now = $this->input->server('REQUEST_TIME');
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
-      $this->_uidx = $this->session->userdata('udix');
+      $this->_uidx = $this->session->userdata('uidx');
     }
 
     protected function _getLayoutData() {
