@@ -1,4 +1,8 @@
 $(document).ready(() => {
+  $(window).resize(function () {
+    //$(".logo").css("width", $(".leftHeader").width());
+  });
+
   $("#register").click(() => {
     $("#dialogArea").css("display", "block");
     $("#registerWindow__inside__content").css("display", "block");
