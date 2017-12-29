@@ -25,4 +25,19 @@ class UserModel extends ModelBase {
 
     return $this->_insert($inputarr)->getLastInsertId();
   }
+
+  public function getUserDataByIdx($idx) {
+    $sql = "SELECT * FROM {$this->_table} WHERE idx = ?";
+    $inputarr = array($idx);
+    return $this->runSql($sql, $inputarr)->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function verifyUser($idx, $now) {
+    $sql = "UPDATE {$this->_table} SET verification=1, update_time=? WHERE idx=?";
+    $inputarr = array(
+      $now,
+      $idx,
+    );
+    return $this->runSql($sql, $inputarr)->getErrcode();
+  }
 }

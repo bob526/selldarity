@@ -1,16 +1,3 @@
-.aboutUs {
-  text-align: left;
-  font-size: 15px; 
-  font-weight: bold;
-  padding-bottom: 15px;
-}
-
-.congratulation {
-  padding: 25px;
-  font-weight: bold;
-  font-size: 25px;
-}
-
 .close {
   color: #FFF;
   float: right;
@@ -24,12 +11,7 @@
   cursor: pointer;
 }
 
-.shareLink {
-  padding-top: 20px;
-  font-size: 20px;
-}
-
-.forgotLink a, .shareLink a {
+.forgotLink a {
   color: #0099FF;
 }
 
@@ -104,18 +86,16 @@
   cursor: pointer;
 }
 
-.registeredInfo {
-  display:none;
-}
-
 .rememberMe {
   text-align: left;
   font-weight: normal;
   color: #aaa;
 }
 
-.userInfo {
-  font-size: 15px;
-  color: #aaa;
-  padding-bottom: 25px;
+.verMailInfo {
+  font-weight: solid;
+  font-size: 20px;
+  padding-top: 125px;
+  display: none;
 }
+

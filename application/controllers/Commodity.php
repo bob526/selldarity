@@ -1,10 +1,8 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-define("NONE_ERROR", 0);
-
 class Commodity extends SELLDARITY_Controller {
   
-  private $mainModel = null;
+  private $CommodityModel = null;
 
   public function __construct() {
     parent::__construct();
@@ -15,23 +13,5 @@ class Commodity extends SELLDARITY_Controller {
       print_r(json_decode($e->getMessage()));
       exit;
     }
-  }
-
-  public function mainPage() {
-    $allCommodity = $this->CommodityModel->getAllCommodity();
-    $data = $this->_getLayoutData();
-    $data["allCommodity"] = $this->_resortCommodityData($allCommodity = $this->CommodityModel->getAllCommodity());
-    
-    $this->load->view('mainPage/home', $data);
-  }
-
-  private function _resortCommodityData($allData) {
-    $rtn = array();
-    foreach($allData as $data) {
-      if(isset($rtn[$data["sortName"]])) $rtn[$data["sortName"]] = array();
-      $rtn[$data["sortName"]][] = $data;
-    }
-
-    return $rtn;
   }
 }

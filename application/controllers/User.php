@@ -4,6 +4,7 @@ define("NONE_ERROR", 0);
 define("DUPILATE_ERROR", 1);
 define("NONEXISTENT_ERROR", 2);
 define("PASSWORD_ERROR", 3);
+define("VERIFICATION_ERROR", 4);
 
 class User extends SELLDARITY_Controller {
   
@@ -29,23 +30,14 @@ class User extends SELLDARITY_Controller {
 
     if(!($this->_checkEmail($email))) {
       $verCode = md5($this->_formattedNow);
-      //$uidx = $this->UserModel->insert($email, $password, $userName, $verCode, $this->_formattedNow); 
-
-      $uidx = 0;
-      $rtn = array(
-        "uidx" => $uidx,
-        "name" => $userName,
-        "LV" => 0,
-        "email" => $email,
-      );
-      $this->session->set_userdata($rtn);
-      $mailRtn = $this->_sendVerificationMail($email, $uidx, $verCode);
+      $uidx = $this->UserModel->insert($email, $password, $userName, $verCode, $this->_formattedNow); 
+      $rtn = $this->_sendVerificationMail($email, $uidx, $verCode);
     } else {
       $rtn = DUPILATE_ERROR;
     }
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($mailRtn);
+    echo json_encode($rtn);
   }
 
   private function _checkEmail($email) {
@@ -55,7 +47,7 @@ class User extends SELLDARITY_Controller {
   private function _sendVerificationMail($email, $uidx, $verCode) {
     $to = $email;
     $subject = "團結拍賣註冊驗證信";
-    $message = "{$this->_baseUrl}?i={$uidx}&ver={$verCode}";
+    $message = "進入此網址進行驗證:{$this->_baseUrl}?i={$uidx}&ver={$verCode}";
     return mail($to, $subject, $message);
   }
 
@@ -67,14 +59,17 @@ class User extends SELLDARITY_Controller {
 
     if ($userData =  $this->UserModel->getUserByEmail($email)) {
       if (password_verify($password, $userData['password'])) {
-        $this->load->library('session');
-        $data = array(
-          "uidx" => $userData['idx'],
-          "name" => $userData['name'],
-          "LV" => $userData['LV'],
-          "email" => $userData['email'],
-        );
-        $this->session->set_userdata($data);
+        if ($userData['verification']) {
+          $data = array(
+            "uidx" => $userData['idx'],
+            "name" => $userData['name'],
+            "LV" => $userData['LV'],
+            "email" => $userData['email'],
+          );
+          $this->session->set_userdata($data);
+        } else {
+          $rtn = VERIFICATION_ERROR;
+        }
       } else {
         $rtn = PASSWORD_ERROR;
       }

@@ -93,7 +93,7 @@ class ModelBase {
   //=========
 
   public function getErrcode() {
-    return $this->_errHdr->getErrinfo();
+    return $this->_errHdr->getErrcode();
   }
 
   public function getErrinfo() {

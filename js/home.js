@@ -1,7 +1,4 @@
 $(document).ready(() => {
-  $(window).resize(function () {
-    //$(".logo").css("width", $(".leftHeader").width());
-  });
 
   $("#register").click(() => {
     $("#dialogArea").css("display", "block");
@@ -23,12 +20,11 @@ $(document).ready(() => {
     var email = $("#registerEmail").val(), reEmail = $("#registerReEmail").val(), password = $("#registerPassword").val(), userName = $("#registerUserName").val();
     if (checkInputData(email, reEmail, password, userName)) {
       $.post(baseUrl+"user/ajaxRegister", {email: email, password: password, userName: userName}, function(rtn) {
-        if(rtn == 1) {
+        if(rtn === 1) {
           $("#registerNotification").html("此電子郵件已註冊過</br>請使用其他電子郵件註冊"); 
-        } else {
-          $("#leftHeaderInfo").html("<p class='userName'>"+ rtn['name'] +"</p><p class='level'>LV."+ rtn["LV"] +"</p>");
+        } else if (rtn === true) {
           $("#registerInput").css("display", "none");
-          $("#registeredInfo").css("display", "block");
+          $("#verMailInfo").css("display", "block");
         }
       });
     }
@@ -41,6 +37,8 @@ $(document).ready(() => {
         $("#signInNotification").html("無此帳號，請註冊後再登入");
       } else if (rtn == 3) {
         $("#signInNotification").html("密碼錯誤");
+      } else if(rtn == 4) {
+        $("#signInNotification").html("請先驗證在登入");
       } else {
         window.location.href = baseUrl;
       }

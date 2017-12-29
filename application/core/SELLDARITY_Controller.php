@@ -4,7 +4,7 @@ class SELLDARITY_Controller extends CI_Controller {
     protected $_now = 0;
     protected $_formattedNow = '';
     protected $_baseUrl = '';
-    protected $errorPage = '';
+    protected $_errorPage = '';
     protected $_uidx = '';
     
     public function __construct() {
@@ -17,6 +17,7 @@ class SELLDARITY_Controller extends CI_Controller {
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
       $this->_uidx = $this->session->userdata('uidx');
+      $this->_errorPage = "{$this->_baseUrl}error/errorPage?msg="
     }
 
     protected function _getLayoutData() {
@@ -28,5 +29,14 @@ class SELLDARITY_Controller extends CI_Controller {
       $data['layouthead'] = $this->load->view('layout/layouthead', $data, true);
       $data['layoutbody'] = $this->load->view('layout/layoutbody', $data, true);
       return $data;
+    }
+
+    protected function _whetherSignIn() {
+      if (!($this->_uidx)) {
+        header("Location:{$this->_baseUrl}");
+        exit;
+      } 
+
+      return true;
     }
 }
