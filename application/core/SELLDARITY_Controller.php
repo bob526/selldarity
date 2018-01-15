@@ -17,7 +17,7 @@ class SELLDARITY_Controller extends CI_Controller {
       $this->_formattedNow = date('Y-m-d H:i:s', $this->_now);
       $this->_baseUrl = "http://".base_url();
       $this->_uidx = $this->session->userdata('uidx');
-      $this->_errorPage = "{$this->_baseUrl}error/errorPage?msg="
+      $this->_errorPage = "{$this->_baseUrl}error/errorPage?msg=";
     }
 
     protected function _getLayoutData() {

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
   <?=$layouthead?>
   <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/home.css?v=<?=time();?>">
@@ -63,6 +65,7 @@
     </div>
   </div>
 </body>
+<html>
 <script>
-  baseUrl = "<?=$baseUrl?>";
+baseUrl = "<?=$baseUrl?>";
 </script>

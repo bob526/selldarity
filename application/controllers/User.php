@@ -80,4 +80,10 @@ class User extends SELLDARITY_Controller {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($rtn);
   }
+
+  public function signOut() {
+    $this->session->sess_destroy();
+    header("Location:{$this->_baseUrl}");
+    exit;
+  }
 }
