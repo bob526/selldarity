@@ -47,14 +47,22 @@
   <div class="mainPage">
     <div class="pure-g">
       <div class="leftBigADArea pure-u-2-3">
-        <div class="leftBigAD"></div>
+        <div id="leftBigAD" class="leftBigAD AD">
+          <ul>
+            <li class="selected"><img src="<?=$baseUrl?>/css/images/Selldarity_icon_chinese.svg" /></li>
+            <li><img src="<?=$baseUrl?>/css/images/notification.svg" /></li>
+            <li><img src="<?=$baseUrl?>/css/images/search.svg" /></li>
+            <li><img src="<?=$baseUrl?>/css/images/tri_point.svg" /></li>
+            <li><img src="<?=$baseUrl?>/css/images/question.svg" /></li>
+          </ul>
+        </div>
       </div>
       <div class="pure-u-1-3">
         <div class="rightSmallTopADArea">
-          <div class="rightSmallTopAD"></div>
+          <div class="rightSmallTopAD AD"></div>
         </div>
         <div class="rightSmallDownADArea">
-          <div class="rightSmallDownAD"></div>
+          <div class="rightSmallDownAD AD"></div>
         </div>
       </div>
     </div>

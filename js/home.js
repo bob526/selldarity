@@ -58,3 +58,40 @@ function checkInputData(email, reEmail, password, userName) {
 
   return rtn;
 }
+
+$(() => {
+  var $slider = $("#leftBigAD"),
+    $li = $('ul li', $slider).not(':first').css('opacity', 0).end(),
+    arrowWidth = 48*-1,
+    arrowOpacity = .3,
+    $arrows = $('<a href="#" class="prev"></a><a href="#" class="next"></a>').css('opacity', arrowOpacity),
+    $prev = $arrows.filter('.prev'),
+    $next = $arrows.filter('.next'),
+    fadeSpeed = 400;
+
+  $slider.append($arrows).hover(() => {
+    var no = $li.filter('.selected').index();
+    arrowAction(no > 0 ? "block" : "none", no < $li.length - 1 ? "block" : "none");
+  }, () => {
+    arrowAction("none", "none");
+  });
+
+  $arrows.click(function () {
+    var $selected = $li.filter('.selected'),
+      no = $selected.index();
+
+    no = (this.className=='prev') ? no - 1 : no + 1;
+    $li.eq(no).stop().fadeTo(fadeSpeed + 100, 1, () => {
+      arrowAction(no > 0 ? "block" : "none", no < $li.length - 1 ? "block" : "none");
+    }).addClass('selected').siblings().fadeTo(fadeSpeed, 0).removeClass('selected');
+
+    return false;
+  }).focus(() => {
+    this.blur();
+  });
+
+  function arrowAction(l, r) {
+    $prev.stop().css({ display: l });
+    $next.stop().css({ display: r });
+  }
+});

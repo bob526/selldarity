@@ -45,7 +45,7 @@ header div p {
 }
 
 .mainPage {
-  margin-top: 50px;
+  margin-top: 75px;
 }
 
 .logo {
@@ -53,28 +53,9 @@ header div p {
   height: auto;
 }
 
-.leftBigAD {
-  min-height: 400px;
-  margin-right: 10px;
-  background: #fff;
-}
-
 .notification, .question, .search, .tri_point {
   width: 30px;
   height: auto;
-}
-
-.rightSmallTopAD, .rightSmallDownAD {
-  min-height: 195px;
-  background: #fff;
-}
-
-.rightSmallTopAD {
-  margin-bottom: 10px;
-}
-
-.rightSmallDownAD {
-  margin-top: 10px;
 }
 
 .rightHeader, .leftHeader {
