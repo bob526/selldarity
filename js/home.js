@@ -4,7 +4,7 @@ $(document).ready(() => {
     $("#dialogArea").css("display", "block");
     $("#registerWindow__inside__content").css("display", "block");
   });
-  
+
   $("#signIn").click(() => {
     $("#dialogArea").css("display", "block");
     $("#signInWindow__inside__content").css("display", "block");
@@ -43,6 +43,11 @@ $(document).ready(() => {
         window.location.href = baseUrl;
       }
     });
+  });
+
+  $(".classification__list ul li").click(function() {
+    $(".classification__list ul li").removeClass("select"); 
+    $(this).addClass("select");
   });
 });
 
@@ -94,4 +99,47 @@ $(() => {
     $prev.stop().css({ display: l });
     $next.stop().css({ display: r });
   }
+
+  $( "#slider-range-one" ).slider({
+    step: 1,
+    range: true,
+    min: 0,
+    max: 37650,
+    values: [ 10000, 30000 ],
+    slide: function( event, ui ) {
+      $("#amount-1-1").html(ui.values[0]);
+      $("#amount-1-2").html(ui.values[1]);
+    }
+  });
+  $("#amount-1-1").html($("#slider-range-one").slider("values", 0));
+  $("#amount-1-2").html($("#slider-range-one").slider("values", 1));
+
+  $( "#slider-range-two" ).slider({
+    step: 1,
+    range: true,
+    min: 10,
+    max: 60,
+    values: [ 20, 40 ],
+    slide: function( event, ui ) {
+      $("#amount-2-1").html(ui.values[0]+"%");
+      $("#amount-2-2").html(ui.values[1]+"%");
+    }
+  });
+  $("#amount-2-1").html($("#slider-range-two").slider("values", 0)+"%");
+  $("#amount-2-2").html($("#slider-range-two").slider("values", 1)+"%");
+
+  $( "#slider-range-three" ).slider({
+    step: 1,
+    range: true,
+    min: 1,
+    max: 120,
+    values: [ 20, 80 ],
+    slide: function( event, ui ) {
+      $("#amount-3-1").html(ui.values[0]);
+      $("#amount-3-2").html(ui.values[1]);
+    }
+  });
+  $("#amount-3-1").html($("#slider-range-three").slider("values", 0));
+  $("#amount-3-2").html($("#slider-range-three").slider("values", 1));
 });
+

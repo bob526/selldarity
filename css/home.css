@@ -11,6 +11,48 @@
   cursor: pointer;
 }
 
+.classification {
+  background: #fff;
+  box-shadow: 4px 4px 12px 2px rgba(20%,20%,40%,0.2);
+}
+
+.classification__type {
+  padding: 15px 10px;
+  letter-spacing: normal;
+  border-bottom: 1px solid #aaa;
+}
+
+.classification__type p {
+  font-size: 10px;
+  color: #999;
+  padding-bottom: 5px;
+}
+
+.classification__range {
+  padding-top: 15px;
+}
+
+.classification__range p {
+  display: inline-block;
+}
+
+.classification__list {
+  padding-top: 10px;
+}
+
+.classification__list ul li {
+  letter-spacing: normal;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.classification__list ul .select {
+  border-left: 4px #f22 solid;
+  font-weight: bold;
+  color: #000;
+}
+
 .forgotLink a {
   color: #0099FF;
 }
@@ -108,6 +150,11 @@
   right: 0;
 }
 
+.productInfo {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
 .rightSmallTopAD, .rightSmallDownAD {
   min-height: 195px;
   background: #fff;
@@ -172,3 +219,38 @@
   box-shadow: 4px 4px 4px 2px rgba(20%,20%,40%,0.2);
 }
 
+//=====range======
+.basis {
+  background: #fff;
+  border: 0;
+  height: 5px;
+}
+
+.basis .ui-slider-range {
+  background-image: none;
+  background-color: #f22;
+}
+
+.basis .ui-slider-handle {
+  width: 8px;
+  height: 8px;
+  border: 5px solid #fff;
+  background-image: none;
+  background-color: #f22;
+  border-radius: 50%;
+  box-shadow: 1px 1px 8px 1px rgba(20%,20%,40%,0.4);
+  cursor: pointer;
+}
+
+.amount-left, .amount-right {
+  background: none;
+  border: none;
+  font-size: 20px;
+  width: 100px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.amount-right {
+  text-align: right;
+}

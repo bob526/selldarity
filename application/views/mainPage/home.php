@@ -2,7 +2,10 @@
 <html>
 <head>
   <?=$layouthead?>
+  <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/jquery-ui.css?v=<?=time();?>">
   <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/home.css?v=<?=time();?>">
+  <script src="<?=$baseUrl?>js/jquery-ui/external/jquery/jquery.js?v=<?=time();?>"></script>
+  <script src="<?=$baseUrl?>js/jquery-ui/jquery-ui.min.js?v=<?=time();?>"></script>
   <script src="<?=$baseUrl?>js/home.js?v=<?=time();?>"></script>
 </head>
 <body>
@@ -66,8 +69,51 @@
         </div>
       </div>
     </div>
-    <div class="pure-g">
-      <div class="pure-u-1-7"></div>
+    <div class="pure-g  productInfo">
+      <div class="pure-u-1-7  classification">
+        <div class="classification__type">
+          <p>單位商品售價</p>
+          <div id="amount-1-1" class="amount-left" disabled></div>
+          <div id="amount-1-2" class="amount-right" disabled></div>
+          <div id="slider-range-one" class="basis" style="height:5px;"></div>
+          <div class="classification__range">
+            <p>0元</p>
+            <p style="float:right;">37650元</p>
+          </div>
+        </div> 
+        <div class="classification__type">
+          <p>優惠折扣</p>
+          <div id="amount-2-1" class="amount-left" disabled></div>
+          <div id="amount-2-2" class="amount-right" disabled></div>
+          <div id="slider-range-two" class="basis" style="height:5px;"></div>
+          <div class="classification__range">
+            <p>10%off</p>
+            <p style="float:right;">60%off</p>
+          </div>
+        </div> 
+        <div class="classification__type">
+          <p>團購達成率(剩餘數)</p>
+          <div id="amount-3-1" class="amount-left" disabled></div>
+          <div id="amount-3-2" class="amount-right" disabled></div>
+          <div id="slider-range-three" class="basis" style="height:5px;"></div>
+          <div class="classification__range">
+            <p>1個</p>
+            <p style="float:right;">120個</p>
+          </div>
+        </div> 
+        <div class="classification__list">
+          <ul>
+            <li class="select">全部</li>
+            <li>3C相關</li>
+            <li>家電影音</li>
+            <li>女裝</li>
+            <li>女性配件</li>
+            <li>女鞋</li>
+            <li>彩妝</li>
+            <li>女性包包</li>
+          </ul>
+        </div>
+      </div>
       <div class="pure-u-4-7"></div>
       <div class="pure-u-2-7"></div>
     </div>
