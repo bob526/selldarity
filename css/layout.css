@@ -16,6 +16,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  letter-spacing: normal;
 }
 
 input, button, a {

@@ -18,7 +18,6 @@
 
 .classification__type {
   padding: 15px 10px;
-  letter-spacing: normal;
   border-bottom: 1px solid #aaa;
 }
 
@@ -41,7 +40,6 @@
 }
 
 .classification__list ul li {
-  letter-spacing: normal;
   padding: 10px 20px;
   cursor: pointer;
   color: #aaa;
@@ -53,18 +51,39 @@
   color: #000;
 }
 
+.class_products {
+  padding: 20px 0;
+}
+
+.class_products_title p, .class_products_title select{
+  display: inline-block;
+}
+
+.class_products_title p {
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.class_products_title select {
+  float: right;
+}
+
+.class_products_items {
+  padding-top: 20px;
+}
+
 .forgotLink a {
   color: #0099FF;
 }
 
 .dialogArea {
   display: none;
-  position: absolute;
-  z-index: 100;
+  position: fixed;
+  z-index: 120;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
-  margin-top: -60px;
+  margin-top: -75px;
   padding-top: 50px;
 }
 
@@ -92,6 +111,16 @@
   display: block;
   padding: 10px 5px;
   margin: 0px auto;
+}
+
+.item_show {
+  background: #fff;
+  padding: 10px;
+}
+
+.item_show img {
+  width: 200px;
+  height: 180px;
 }
 
 .leftBigAD {
@@ -202,9 +231,24 @@
   cursor: pointer;
 }
 
+.show_products {
+  padding-left: 20px;
+}
+
+.ship_range {
+  width: 100%;
+  height: 5px;
+  background: #ddd;
+  border-radius: 50px;
+}
+
+.ship_range div {
+  height: 5px;
+  border-radius: 50px;
+}
+
 .rememberMe {
   text-align: left;
-  font-weight: normal;
   color: #aaa;
 }
 
@@ -221,7 +265,6 @@
 
 //=====range======
 .basis {
-  background: #fff;
   border: 0;
   height: 5px;
 }

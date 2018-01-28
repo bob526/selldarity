@@ -75,7 +75,7 @@
           <p>單位商品售價</p>
           <div id="amount-1-1" class="amount-left" disabled></div>
           <div id="amount-1-2" class="amount-right" disabled></div>
-          <div id="slider-range-one" class="basis" style="height:5px;"></div>
+          <div id="slider-range-one" class="basis" style="height:5px;background:#ddd;"></div>
           <div class="classification__range">
             <p>0元</p>
             <p style="float:right;">37650元</p>
@@ -85,7 +85,7 @@
           <p>優惠折扣</p>
           <div id="amount-2-1" class="amount-left" disabled></div>
           <div id="amount-2-2" class="amount-right" disabled></div>
-          <div id="slider-range-two" class="basis" style="height:5px;"></div>
+          <div id="slider-range-two" class="basis" style="height:5px;background:#ddd;"></div> 
           <div class="classification__range">
             <p>10%off</p>
             <p style="float:right;">60%off</p>
@@ -95,7 +95,7 @@
           <p>團購達成率(剩餘數)</p>
           <div id="amount-3-1" class="amount-left" disabled></div>
           <div id="amount-3-2" class="amount-right" disabled></div>
-          <div id="slider-range-three" class="basis" style="height:5px;"></div>
+          <div id="slider-range-three" class="basis" style="height:5px;background:#ddd;"></div>
           <div class="classification__range">
             <p>1個</p>
             <p style="float:right;">120個</p>
@@ -114,7 +114,31 @@
           </ul>
         </div>
       </div>
-      <div class="pure-u-4-7"></div>
+      <div class="pure-u-4-7 show_products">
+        <div class="class_products">
+          <div class="class_products_title">
+            <p>3C相關</p>
+            <select>
+              <option value="1">購買量</option>
+              <option value="2">價格</option>
+              <option value="3">具離達標數</option>
+            </select>
+          </div>
+          <div class="class_products_items">
+            <div class="item_show">
+              <img src="<?=$baseUrl?>/products/iphone7plus.jpg" /> 
+              <p class="item_name">iphone7plus</p>
+              <p class="item_price">&#36;<del>22222</del><span>﹥<span>66666</p>
+              <div class="ship_range"><div style="width:50%;background:#f22;"></div></div>
+              <div class="item_info">
+                <p><span>25件</span>距離出貨還剩</p>
+                <p><span>40%off</span>現在直接下訂</p>
+                <p><span>&#36;50</span>單次運費</p>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
       <div class="pure-u-2-7"></div>
     </div>
   </div>
