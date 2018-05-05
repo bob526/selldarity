@@ -10,43 +10,6 @@
 </head>
 <body>
   <?=$layoutbody?>
-
-  <div class="dialogArea" id="dialogArea">
-    <div class="dialogWindow__outside">
-      <span class="close" id="close">&times;</span>
-      <div class="dialogWindow__inside">
-        <div class="dialogWindow__inside__title">
-          <img src="<?=$baseUrl?>/css/images/Selldarity_icon_chinese.svg" class="logo"/>
-        </div>
-        <div class="registerWindow__inside__content" id="registerWindow__inside__content">
-          <div class="registerInput" id="registerInput">
-            <p id="registerNotification">以您的電子郵件註冊</br>即可在團結拍賣獲得全新的拍賣體驗</p>
-            <input type="email" required="required" placeholder="電子郵件" id="registerEmail"/>
-            <input type="email" required="required" placeholder="確認郵件" id="registerReEmail"/>
-            <input type="password"  required="required" placeholder="密碼" id="registerPassword"/>
-            <input type="text"  required="required" placeholder="我們該怎麼稱呼你?" id="registerUserName"/>
-            <input type="submit" id="registerSubmit" value="註冊">
-            <p>已經加入團結拍賣? <span class="registerToSignIn">登入</span></p>
-          </div>
-          <div class="verMailInfo" id="verMailInfo">
-            <p>驗證信已寄送至您的信箱，</br>驗證後就可以開始在團結拍賣購物囉</p>
-          </div>
-          <?php if (isset($registeredInfo)) :?>
-            <?=$registeredInfo?>
-          <?php endif; ?>
-        </div>
-        <div class="signInWindow__inside__content" id="signInWindow__inside__content">
-          <p id="signInNotification">以您的電子郵件登入</br>即可在團結拍賣獲得全新的拍賣體驗</p>
-          <input type="email" required="required" placeholder="電子郵件" id="signInEmail"/>
-          <input type="password"  required="required" placeholder="密碼" id="signInPassword"/>
-          <p class="rememberMe">記住我</p>
-          <p class="forgotLink"><a href="#">忘記密碼?</a></p>
-          <input type="submit" id="signInSubmit" value="登入">
-          <p>還沒加入團結拍賣? <span class="signInToRegister">登入</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="mainPage">
     <div class="pure-g">
       <div class="leftBigADArea pure-u-2-3">
@@ -70,7 +33,7 @@
       </div>
     </div>
     <div class="pure-g  productInfo">
-      <div class="pure-u-1-7  classification">
+      <div class="pure-u-4-24  classification">
         <div class="classification__type">
           <p>單位商品售價</p>
           <div id="amount-1-1" class="amount-left" disabled></div>
@@ -78,7 +41,7 @@
           <div id="slider-range-one" class="basis" style="height:5px;background:#ddd;"></div>
           <div class="classification__range">
             <p>0元</p>
-            <p style="float:right;">37650元</p>
+            <p style="float:right;">40000元</p>
           </div>
         </div> 
         <div class="classification__type">
@@ -87,7 +50,7 @@
           <div id="amount-2-2" class="amount-right" disabled></div>
           <div id="slider-range-two" class="basis" style="height:5px;background:#ddd;"></div> 
           <div class="classification__range">
-            <p>10%off</p>
+            <p>0%off</p>
             <p style="float:right;">60%off</p>
           </div>
         </div> 
@@ -103,47 +66,75 @@
         </div> 
         <div class="classification__list">
           <ul>
-            <li class="select">全部</li>
-            <li>3C相關</li>
-            <li>家電影音</li>
-            <li>女裝</li>
-            <li>女性配件</li>
-            <li>女鞋</li>
-            <li>彩妝</li>
-            <li>女性包包</li>
+            <li class="select"><?=$allDepartments['selectedItem']['name']?></li>
+            <?php foreach ($allDepartments['departments'] as $department) : ?>
+              <li><?=$department['name']?></li>
+            <?php endforeach; ?>
           </ul>
         </div>
       </div>
-      <div class="pure-u-4-7 show_products">
+      <div class="pure-u-14-24 show_products">
+        <?php foreach ($popularProduct as $key => $products): ?>
         <div class="class_products">
           <div class="class_products_title">
-            <p>3C相關</p>
+          <p><?=$key?></p>
             <select>
               <option value="1">購買量</option>
               <option value="2">價格</option>
               <option value="3">具離達標數</option>
             </select>
           </div>
-          <div class="class_products_items">
-            <div class="item_show">
-              <img src="<?=$baseUrl?>/products/iphone7plus.jpg" /> 
-              <p class="item_name">iphone7plus</p>
-              <p class="item_price">&#36;<del>22222</del><span>﹥<span>66666</p>
-              <div class="ship_range"><div style="width:50%;background:#f22;"></div></div>
-              <div class="item_info">
-                <p><span>25件</span>距離出貨還剩</p>
-                <p><span>40%off</span>現在直接下訂</p>
-                <p><span>&#36;50</span>單次運費</p>
+          <div class="pure-g class_products_items">
+            <?php foreach ($products as $product): ?>
+              <div class="pure-u-7-24 item_show" data-pidx="<?=$product['idx']?>">
+                <img src="<?=$baseUrl?>/products/<?=$product['idx']?>/1" draggable="true" ondragstart="Drag(<?=$product['idx']?>)"/> 
+                <p class="item_name"><?=$product['name']?></p>
+                <p class="item_price">&#36; <del><?=$product['ori_Price']?></del><span>﹥</span><b><?=$product['off_Price']?></b></p>
+                <div class="ship_range"><div style="width:<?=$product['toShipPercent']?>%;background:#f22;"></div></div>
+                <div class="item_info">
+                  <p><span><b class="item_toShip"><?=$product['to_Ship']?></b>件</span>距離出貨還剩</p>
+                  <p><span><b class="item_off"><?=$product['off_Percent']?></b>%off</span>現在直接下訂</p>
+                  <p><span>&#36;50</span>單次運費</p>
+                </div>
               </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div> 
+        <?php endforeach; ?>
       </div>
-      <div class="pure-u-2-7"></div>
+      <div class="pure-u-5-24 products_manage">
+        <div class="manage_title">
+          <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
+          <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>
+          <p>個人商品管理</p>
+        </div>
+        <div class="pure-g manage_cla">
+          <div id="shoppingCar_item" class="pure-u-1-3 manage_cla_item manage_select_cal">購物車</div>
+          <div id="warehouse_item" class="pure-u-1-3 manage_cla_item">虛擬倉庫</div>
+          <div id="personalStore_item" class="pure-u-1-3 manage_cla_item">個人拍賣</div>
+        </div>
+        <div class="manage_drop" ondragover="AllowDrop(event)" ondrop="Drop()">
+          <div id="drop__store" class="drop__store">
+          </div>
+        </div>
+        <div id="shoppingCar_submit" class="shoppingCar_submit manage_submit">
+          <p>等級越高，折扣越多喔!</p>
+          <button>直接訂購</button>
+        </div>
+        <div id="warehouse_submit" class="warehouse_submit manage_submit">
+          <p>預估儲藏費用<span>25 + <b>2.5</b></span>元/日</p>
+          <button>直接進貨</button>
+        </div>
+        <div id="personalStore_submit" class="personalStore_submit manage_submit">
+          <p>等級越高，折扣越多喔!</p>
+          <button>推廣個人賣場</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>
 <html>
 <script>
 baseUrl = "<?=$baseUrl?>";
+uid = "<?=$uidx?>";
 </script>

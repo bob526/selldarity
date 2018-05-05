@@ -43,3 +43,13 @@
     </div>
   </div>
 </header>
+<div class="dialogArea" id="dialogArea">
+  <div class="dialogWindow__outside">
+    <div id="dialogWindow__inside" class="dialogWindow__inside">
+      <span class="close" id="close">&times;</span>
+      <?php if (isset($registeredInfo)): ?>
+        <?=$registeredInfo?>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>

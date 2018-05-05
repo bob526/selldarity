@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5560 1585 289 196">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #d6d6d6;
+        stroke-width: 4px;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #d6d6d6;
+        font-size: 24px;
+        font-family: STYuanti-TC-Bold, Yuanti TC;
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_247" data-name="Group 247" transform="translate(3998 1156)">
+    <g id="Group_33" data-name="Group 33" transform="translate(0 -101)">
+      <g id="Rectangle_51" data-name="Rectangle 51" class="cls-1" transform="translate(1625 530)">
+        <rect class="cls-4" width="143" height="143" rx="25"/>
+        <rect class="cls-5" x="2" y="2" width="139" height="139" rx="23"/>
+      </g>
+      <line id="Line_15" data-name="Line 15" class="cls-2" x2="63" transform="translate(1665.5 601.5)"/>
+      <path id="Path_10" data-name="Path 10" class="cls-2" d="M0,0H63" transform="translate(1697 570) rotate(90)"/>
+    </g>
+    <text id="試著將商品直接拉進來吧_" data-name="試著將商品直接拉進來吧！" class="cls-3" transform="translate(1562 590)"><tspan x="0" y="25">試著將商品直接拉進來吧！</tspan></text>
+  </g>
+</svg>

@@ -1,4 +1,8 @@
+<script src="<?=$baseUrl?>js/homeWindows.js?v=<?=time();?>"></script>
 <div class="registeredInfo" id="registeredInfo">
+  <div class="dialogWindow__inside__title">
+    <img src="<?=$baseUrl?>/css/images/Selldarity_icon_chinese.svg" class="logo"/>
+  </div>
   <p class="congratulation">恭喜您正式加入團結拍賣!</p>
   <p class="userInfo">您可以在平台中找尋喜歡的商品，放入個人賣場，</br>並且經由銷售這些商品來獲取報酬</p>
   <p class="userInfo">在整個拍賣過程中，您只需要知道您想賣什麼，</br>以及賣給誰，其餘的全由我們為您解決</p>
@@ -9,12 +13,19 @@
 </div>
 
 <style>
+.registeredInfo {
+  text-align: center;
+  width: 400px;
+  background: #fff;
+  padding: 20px 0px;
+}
 
 .aboutUs {
   text-align: left;
   font-size: 15px; 
   font-weight: bold;
   padding-bottom: 15px;
+  padding-left: 40px
 }
 
 .congratulation {

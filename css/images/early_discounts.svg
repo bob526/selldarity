@@ -1,0 +1,23 @@
+<svg id="Group_247" data-name="Group 247" xmlns="http://www.w3.org/2000/svg" viewBox="1602.728 625.001 103.9 43.271">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fd0000;
+      }
+
+      .cls-2 {
+        fill: #ffa7a7;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        font-size: 16px;
+        font-family: STYuanti-TC-Bold, Yuanti TC;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <path id="Subtraction_18" data-name="Subtraction 18" class="cls-1" d="M-1899.373-1133.859H-2003v-31h103.628l-15.5,15.5,15.5,15.5,0,0h0Z" transform="translate(3606 1789.858)"/>
+  <path id="Subtraction_19" data-name="Subtraction 19" class="cls-2" d="M-1964.272-1156l0,0-12.271-12.271h12.272V-1156Z" transform="translate(3579.272 1824.272)"/>
+  <text id="早期優惠" class="cls-3" transform="translate(1616 628)"><tspan x="0" y="17">早期優惠</tspan></text>
+</svg>

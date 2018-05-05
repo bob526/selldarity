@@ -20,8 +20,7 @@ class SELLDARITY_Controller extends CI_Controller {
       $this->_errorPage = "{$this->_baseUrl}error/errorPage?msg=";
     }
 
-    protected function _getLayoutData() {
-      $data = array();
+    protected function _getLayoutData($data = array()) {
       $data['baseUrl'] = $this->_baseUrl;
       $data['uidx'] = $this->_uidx;
       $data['userName'] = $this->session->userdata('name');

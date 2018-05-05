@@ -18,8 +18,13 @@ time, mark, audio, video {
   vertical-align: baseline;
   letter-spacing: normal;
 }
-
-input, button, a {
+::selection {
+  background: transparent;
+}
+::-moz-selection {
+  background: transparent;
+}
+input, button, a , select {
   outline: none;
   text-decoration: none;
 }
@@ -49,6 +54,43 @@ header div {
 header div p {
   display: inline-block;
   padding: 15px 5px;
+}
+
+.close {
+  position: absolute;
+  right: -60px;
+  margin-top: -60px;
+  color: #FFF;
+  font-size: 60px;
+}
+
+.close:hover,
+.close:focus {
+  color: #aaa;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dialogArea {
+  display: none;
+  position: fixed;
+  z-index: 120;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  margin-top: -75px;
+  padding-top: 70px;
+}
+
+.dialogWindow__outside {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.dialogWindow__inside {
+  position: relative;
 }
 
 .mainPage {
@@ -164,3 +206,14 @@ ul {
   padding: 0;
 }
 
+/*div::scroolbars*/
+div::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 8px;
+}
+div::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+  background: #cccccc; 
+}
+div::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: gray;
+}
