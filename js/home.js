@@ -68,6 +68,18 @@ $(document).ready(() => {
     $("#warehouse_submit").css("display", "none");
     $("#personalStore_submit").css("display", "block");
   });
+
+  $(window).scroll(function() {
+    return;
+    let scrollVal = $(this).scrollTop();
+    let claScrTop = $(".classification").offset().top;
+
+    if (scrollVal > claScrTop) {
+      $(".classification").css({"position": "fixed", "top": "50px"});
+    } else {
+      $(".classification").css({"position": "static"});
+    }
+  });
 });
 
 

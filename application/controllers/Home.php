@@ -64,8 +64,7 @@ class Home extends SELLDARITY_Controller {
 
     $data = $this->_getLayoutData($data);
     $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments());
-    $data["popularProduct"] = $this->_resortProductData($popularProduct = $this->ProductModel->getPopularProduct(), $data["allDepartments"]['departments']);
-
+    $data["products"] = $this->_calToShipPercent($popularProduct = $this->ProductModel->getPopularProduct());
 
     $this->load->view('mainPage/home', $data);
   }
@@ -84,23 +83,12 @@ class Home extends SELLDARITY_Controller {
     return $rtn;
   }
 
-  private function _resortProductData($allData, $departments) {
-    $rtn = array();
-
-    foreach ($departments as $dep) {
-      foreach ($allData as $data) {
-        if ($data['dep_Id'] == $dep['idx']) {
-          if (!isset($rtn[$dep['name']])) {
-              $rtn[$dep['name']] = array();
-          }
-          $data['toShipPercent'] = floor(100*(($data['ship_Num'] - $data['to_Ship'])/$data['ship_Num']));
-          
-          $rtn[$dep['name']][] = $data;
-        }
-      }
+  private function _calToShipPercent($allData) {
+    foreach ($allData as &$data) {
+      $data['toShipPercent'] = floor(100*(($data['ship_Num'] - $data['to_Ship'])/$data['ship_Num']));
     }
 
-    return $rtn;
+    return $allData;
   }
 
   public function ajaxGetRegisterWindow() {

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="pure-g  productInfo">
-      <div class="pure-u-4-24  classification">
+      <div class="classification">
         <div class="classification__type">
           <p>單位商品售價</p>
           <div id="amount-1-1" class="amount-left" disabled></div>
@@ -73,17 +73,13 @@
           </ul>
         </div>
       </div>
-      <div class="pure-u-14-24 show_products">
-        <?php foreach ($popularProduct as $key => $products): ?>
+      <div class="pure-u-15-24 show_products">
         <div class="class_products">
-          <div class="class_products_title">
-          <p><?=$key?></p>
-            <select>
-              <option value="1">購買量</option>
-              <option value="2">價格</option>
-              <option value="3">具離達標數</option>
-            </select>
-          </div>
+          <select class="class_products_select">
+            <option value="1">購買量</option>
+            <option value="2">價格</option>
+            <option value="3">具離達標數</option>
+          </select>
           <div class="pure-g class_products_items">
             <?php foreach ($products as $product): ?>
               <div class="pure-u-7-24 item_show" data-pidx="<?=$product['idx']?>">
@@ -100,7 +96,6 @@
             <?php endforeach; ?>
           </div>
         </div> 
-        <?php endforeach; ?>
       </div>
       <div class="pure-u-5-24 products_manage">
         <div class="manage_title">
