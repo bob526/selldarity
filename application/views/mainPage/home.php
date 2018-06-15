@@ -33,56 +33,61 @@
       </div>
     </div>
     <div class="pure-g  productInfo">
-      <div class="classification">
-        <div class="classification__type">
-          <p>單位商品售價</p>
-          <div id="amount-1-1" class="amount-left" disabled></div>
-          <div id="amount-1-2" class="amount-right" disabled></div>
-          <div id="slider-range-one" class="basis" style="height:5px;background:#ddd;"></div>
-          <div class="classification__range">
-            <p>0元</p>
-            <p style="float:right;">40000元</p>
+      <div class="classification__container" id="classification__container">
+        <div class="classification">
+          <div class="classification__type">
+            <p>單位商品售價</p>
+            <div id="amount-1-1" class="amount-left" disabled></div>
+            <div id="amount-1-2" class="amount-right" disabled></div>
+            <div id="slider-range-one" class="basis" style="height:5px;background:#ddd;"></div>
+            <div class="classification__range">
+              <p>0元</p>
+              <p style="float:right;">40000元</p>
+            </div>
+          </div> 
+          <div class="classification__type">
+            <p>優惠折扣</p>
+            <div id="amount-2-1" class="amount-left" disabled></div>
+            <div id="amount-2-2" class="amount-right" disabled></div>
+            <div id="slider-range-two" class="basis" style="height:5px;background:#ddd;"></div> 
+            <div class="classification__range">
+              <p>0%off</p>
+              <p style="float:right;">60%off</p>
+            </div>
+          </div> 
+          <div class="classification__type">
+            <p>團購達成率(剩餘數)</p>
+            <div id="amount-3-1" class="amount-left" disabled></div>
+            <div id="amount-3-2" class="amount-right" disabled></div>
+            <div id="slider-range-three" class="basis" style="height:5px;background:#ddd;"></div>
+            <div class="classification__range">
+              <p>1個</p>
+              <p style="float:right;">120個</p>
+            </div>
+          </div> 
+          <div class="classification__list">
+            <ul>
+              <li class="select"><?=$allDepartments['selectedItem']['name']?></li>
+              <?php foreach ($allDepartments['departments'] as $department) : ?>
+                <a href="<?=$baseUrl."?dep={$department['idx']}"?>"><li><?=$department['name']?></li></a>
+              <?php endforeach; ?>
+            </ul>
           </div>
-        </div> 
-        <div class="classification__type">
-          <p>優惠折扣</p>
-          <div id="amount-2-1" class="amount-left" disabled></div>
-          <div id="amount-2-2" class="amount-right" disabled></div>
-          <div id="slider-range-two" class="basis" style="height:5px;background:#ddd;"></div> 
-          <div class="classification__range">
-            <p>0%off</p>
-            <p style="float:right;">60%off</p>
-          </div>
-        </div> 
-        <div class="classification__type">
-          <p>團購達成率(剩餘數)</p>
-          <div id="amount-3-1" class="amount-left" disabled></div>
-          <div id="amount-3-2" class="amount-right" disabled></div>
-          <div id="slider-range-three" class="basis" style="height:5px;background:#ddd;"></div>
-          <div class="classification__range">
-            <p>1個</p>
-            <p style="float:right;">120個</p>
-          </div>
-        </div> 
-        <div class="classification__list">
-          <ul>
-            <li class="select"><?=$allDepartments['selectedItem']['name']?></li>
-            <?php foreach ($allDepartments['departments'] as $department) : ?>
-              <li><?=$department['name']?></li>
-            <?php endforeach; ?>
-          </ul>
         </div>
       </div>
-      <div class="pure-u-15-24 show_products">
+      <div class="pure-u-15-24 show_products" id="show_products">
         <div class="class_products">
-          <select class="class_products_select">
-            <option value="1">購買量</option>
-            <option value="2">價格</option>
-            <option value="3">具離達標數</option>
-          </select>
+          <div class="class_products_title">
+            <p><?=$allDepartments['selectedItem']['name']?></p>
+            <select class="class_products_select">
+              <option value="1">購買量</option>
+              <option value="2">價格</option>
+              <option value="3">具離達標數</option>
+            </select>
+          </div>
           <div class="pure-g class_products_items">
             <?php foreach ($products as $product): ?>
-              <div class="pure-u-7-24 item_show" data-pidx="<?=$product['idx']?>">
+              <div class="pure-u-5-24 item_show" data-pidx="<?=$product['idx']?>">
                 <img src="<?=$baseUrl?>/products/<?=$product['idx']?>/1" draggable="true" ondragstart="Drag(<?=$product['idx']?>)"/> 
                 <p class="item_name"><?=$product['name']?></p>
                 <p class="item_price">&#36; <del><?=$product['ori_Price']?></del><span>﹥</span><b><?=$product['off_Price']?></b></p>
@@ -97,7 +102,7 @@
           </div>
         </div> 
       </div>
-      <div class="pure-u-5-24 products_manage">
+      <div class="pure-u-5-24 products_manage" id="products_manage">
         <div class="manage_title">
           <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
           <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>

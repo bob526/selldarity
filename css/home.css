@@ -1,14 +1,18 @@
 .classification {
   background: #fff;
   box-shadow: 0px 0px 5px 2px rgba(20%,20%,40%,0.2);
+  width: 100%;
+}
+
+.classification__container {
   width: 14%;
-  height: 100%;
   margin-left:10px;
-  position: static;
+  height: 570px;
+  overflow-y: auto;
 }
 
 .classification__type {
-  padding: 15px 10px;
+  padding: 15px;
   border-bottom: 1px solid #aaa;
 }
 
@@ -42,8 +46,21 @@
   color: #000;
 }
 
+.class_products_title {
+  width: 100%; 
+}
+
+.class_products_title p {
+  display: inline-block;
+  margin-left: 1%;
+  font-weight: bold;
+  color: #000;
+  font-size: 20px;
+}
+
 .class_products_select {
-  margin-left: 85%;
+  display: inline-block;
+  margin-left: 81%;
 }
 
 .class_products_items {
@@ -322,7 +339,7 @@
 }
 
 .drop__store {
-  height: 530px;
+  height: 400px;
   background: url("images/ADD.svg") no-repeat;
   background-size: 200px 200px;
   background-position: center;
@@ -476,7 +493,7 @@
 }
 
 .manage_drop {
-  height: 550px;
+  height: 420px;
   overflow-y: auto;
 }
 
@@ -720,7 +737,7 @@
   border: none;
   font-size: 20px;
   display: inline-block;
-  padding: 5px;
+  padding: 5px 0px;
 }
 
 .amount-right {

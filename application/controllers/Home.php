@@ -26,8 +26,14 @@ class Home extends SELLDARITY_Controller {
       exit;
     }
 
+    if ($this->input->get('dep')) {
+      $productDepartment = $this->input->get('dep');
+    } else {
+      $productDepartment = 10;
+    }
+
     $verData = $this->input->get();
-    if ($verData) {
+    if (isset($verData['i']) && isset($verData['ver'])) {
       try {
         $UserModel = Model::load("UserModel");
       } catch(Exception $e) {
@@ -63,17 +69,24 @@ class Home extends SELLDARITY_Controller {
     }
 
     $data = $this->_getLayoutData($data);
-    $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments());
-    $data["products"] = $this->_calToShipPercent($popularProduct = $this->ProductModel->getPopularProduct());
+    $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments(), $productDepartment);
+
+    if ($productDepartment == 10) {
+      $products = $this->ProductModel->getPopularProduct();
+    } else {
+      $products = $this->ProductModel->getProductsByDepartment($productDepartment);
+    }
+
+    $data["products"] = $this->_calToShipPercent($products);
 
     $this->load->view('mainPage/home', $data);
   }
 
-  private function _resetDepartments($departments) {
+  private function _resetDepartments($departments, $productDepartment) {
     $rtn = array("selectedItem" => array(), "departments" => array());
 
     foreach ($departments as $data) {
-      if ($data['name'] == "熱門") {
+      if ($data['idx'] == $productDepartment) {
         $rtn['selectedItem'] = $data;
       } else {
         $rtn['departments'][] = $data;

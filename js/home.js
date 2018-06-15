@@ -69,15 +69,18 @@ $(document).ready(() => {
     $("#personalStore_submit").css("display", "block");
   });
 
+  let claScrTop = $("#classification__container").offset().top;
   $(window).scroll(function() {
-    return;
     let scrollVal = $(this).scrollTop();
-    let claScrTop = $(".classification").offset().top;
 
     if (scrollVal > claScrTop) {
-      $(".classification").css({"position": "fixed", "top": "50px"});
+      $("#classification__container").css({"position": "fixed", "top": "65px"});
+      $("#show_products").css({"margin": "0 0 0 15.3%"});
+      $("#products_manage").css({"position": "fixed", "top": "65px", "right": "0px"});
     } else {
-      $(".classification").css({"position": "static"});
+      $("#classification__container").css({"position": "static", "top": ""});
+      $("#show_products").css({"margin": "0 auto"});
+      $("#products_manage").css({"position": "static", "top": "", "right": ""});
     }
   });
 });

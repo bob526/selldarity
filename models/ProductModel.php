@@ -18,4 +18,10 @@ class ProductModel extends ModelBase {
     $inputarr = array($productId);
     return $this->runSql($sql, $inputarr)->fetch(PDO::FETCH_ASSOC);
   }
+
+  public function getProductsByDepartment($productDepartment) {
+    $sql = "SELECT * FROM {$this->_table} WHERE dep_Id=?";
+    $inputarr = array($productDepartment);
+    return $this->runSql($sql, $inputarr)->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
