@@ -83,6 +83,10 @@ $(document).ready(() => {
       $("#products_manage").css({"position": "static", "top": "", "right": ""});
     }
   });
+
+  $("#manage_title").click(function() {
+    window.location = baseUrl+"product/personalProductsManage"
+  });
 });
 
 

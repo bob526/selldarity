@@ -15,6 +15,13 @@ class Product extends SELLDARITY_Controller {
     }
   }
 
+  public function personalProductsManage() {
+    $data = array();
+    
+    $data = $this->_getLayoutData($data);
+    $this->load->view('product/personalProductsManage', $data);
+  }
+
   public function ajaxGetProductInfo() {
     $productData = $this->ProductModel->getProductById($this->input->post('idx'));
     

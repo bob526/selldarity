@@ -103,10 +103,12 @@
         </div> 
       </div>
       <div class="pure-u-5-24 products_manage" id="products_manage">
-        <div class="manage_title">
+        <div class="manage_title" id="manage_title">
           <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
           <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>
           <p>個人商品管理</p>
+        </div>
+        <div class="manage_title_gap">
         </div>
         <div class="pure-g manage_cla">
           <div id="shoppingCar_item" class="pure-u-1-3 manage_cla_item manage_select_cal">購物車</div>

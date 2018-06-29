@@ -509,7 +509,7 @@
   0px 0px 10px 1px rgba(20%,20%,40%,0.2),
   0px 0px 0px 0px rgba(20%,20%,40%,0),
   0px 0px 0px 0px rgba(20%,20%,40%,0);
-  padding: 10px 15px;
+  padding: 5px 15px;
 }
 
 .manage_submit p {
@@ -553,7 +553,8 @@
 .manage_title {
   background: #f22;
   padding: 10px 10px;
-  padding-bottom: 25px;
+  cursor: pointer;
+  border-bottom: 2px solid #fff;
 }
 
 .manage_title img,  .manage_title p{
@@ -572,6 +573,11 @@
 .manage_title p {
   color: #fff;
   min-height: auto;
+}
+
+.manage_title_gap {
+  background: #f22;
+  height: 25px;
 }
 
 .otherImg {
