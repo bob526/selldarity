@@ -19,7 +19,8 @@
     <div class="rightHeader pure-u-3-4">
       <div class="leftHeaderInfo" id="leftHeaderInfo">
         <?php if ($uidx) : ?>
-          <p class="userName"><?=$userName?></p>
+          <p class="userPicture"><img src="<?=$baseUrl?>userImg/<?php echo $picture ? $picture : "user.svg"; ?>"/></p>
+          <p class="userName" id="userName"><?=$userName?></p>
           <p class="level">LV.<?=$LV?></p>
         <?php else : ?>
           <p class="register" id="register">註冊</p>

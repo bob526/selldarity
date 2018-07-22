@@ -90,7 +90,7 @@
               <div class="pure-u-5-24 item_show" data-pidx="<?=$product['idx']?>">
                 <img src="<?=$baseUrl?>/products/<?=$product['idx']?>/1" draggable="true" ondragstart="Drag(<?=$product['idx']?>)"/> 
                 <p class="item_name"><?=$product['name']?></p>
-                <p class="item_price">&#36; <del><?=$product['ori_Price']?></del><span>﹥</span><b><?=$product['off_Price']?></b></p>
+                <p class="item_price">&#36; <del><?=$product['ori_Price']?></del><span>﹥</span><b><?=$product['off_Price']?></b><?php echo $product['unit'] ? "/".$product['unit'] : ""; ?></p>
                 <div class="ship_range"><div style="width:<?=$product['toShipPercent']?>%;background:#f22;"></div></div>
                 <div class="item_info">
                   <p><span><b class="item_toShip"><?=$product['to_Ship']?></b>件</span>距離出貨還剩</p>
@@ -111,12 +111,16 @@
         <div class="manage_title_gap">
         </div>
         <div class="pure-g manage_cla">
-          <div id="shoppingCar_item" class="pure-u-1-3 manage_cla_item manage_select_cal">購物車</div>
-          <div id="warehouse_item" class="pure-u-1-3 manage_cla_item">虛擬倉庫</div>
-          <div id="personalStore_item" class="pure-u-1-3 manage_cla_item">個人拍賣</div>
+          <div id="shoppingCar_item" class="pure-u-1-3 manage_cla_item manage_select_cal" data-item="1">購物車</div>
+          <div id="warehouse_item" class="pure-u-1-3 manage_cla_item" data-item="2">虛擬倉庫</div>
+          <div id="personalStore_item" class="pure-u-1-3 manage_cla_item" data-item="3">個人拍賣</div>
         </div>
         <div class="manage_drop" ondragover="AllowDrop(event)" ondrop="Drop()">
-          <div id="drop__store" class="drop__store">
+          <div id="drop__store_shoppingCar" class="drop__store drop__store_shoppingCar">
+          </div>
+          <div id="drop__store_warehouse" class="drop__store drop__store_warehouse">
+          </div>
+          <div id="drop__store_personal" class="drop__store drop__store_personal">
           </div>
         </div>
         <div id="shoppingCar_submit" class="shoppingCar_submit manage_submit">

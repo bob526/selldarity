@@ -47,6 +47,10 @@ $(document).ready(() => {
     $("#shoppingCar_submit").css("display", "block");
     $("#warehouse_submit").css("display", "none");
     $("#personalStore_submit").css("display", "none");
+
+    $("#drop__store_shoppingCar").css("display", "block");
+    $("#drop__store_warehouse").css("display", "none");
+    $("#drop__store_personal").css("display", "none");
   });
 
   $("#warehouse_item").click(function() {
@@ -57,6 +61,10 @@ $(document).ready(() => {
     $("#shoppingCar_submit").css("display", "none");
     $("#warehouse_submit").css("display", "block");
     $("#personalStore_submit").css("display", "none");
+    
+    $("#drop__store_shoppingCar").css("display", "none");
+    $("#drop__store_warehouse").css("display", "block");
+    $("#drop__store_personal").css("display", "none");
   });
 
   $("#personalStore_item").click(function() {
@@ -67,6 +75,10 @@ $(document).ready(() => {
     $("#shoppingCar_submit").css("display", "none");
     $("#warehouse_submit").css("display", "none");
     $("#personalStore_submit").css("display", "block");
+
+    $("#drop__store_shoppingCar").css("display", "none");
+    $("#drop__store_warehouse").css("display", "none");
+    $("#drop__store_personal").css("display", "block");
   });
 
   let claScrTop = $("#classification__container").offset().top;
@@ -196,34 +208,15 @@ function Drag(productId) {
 
 function Drop() {
   if (checkSignIn()) {
-    $.post(baseUrl+"home/ajaxGetDropProduct", {Pidx: pid, Uidx: uid}, function(rtn) {
-      let selected = $(".manage_select_cal").attr('id');
+    let storeType = $(".manage_select_cal").data("item");
 
-      $("#drop__store").append(rtn); 
-      if (selected == "shoppingCar_item") {
-        $(".drop_warehouse_item:not(.drop_shoppingCar_item)").hide();
-        $(".drop_personalStore_item:not(.drop_shoppingCar_item)").hide();
-        $(".drop_shoppingCar_item").show();
-
-        $("#shoppingCar_submit").css("display", "block");
-        $("#warehouse_submit").css("display", "none");
-        $("#personalStore_submit").css("display", "none");
-      } else if (selected == "warehouse_item") {
-        $(".drop_shoppingCar_item:not(.drop_warehouse_item)").hide();
-        $(".drop_personalStore_item:not(.drop_warehouse_item)").hide();
-        $(".drop_warehouse_item").show();
-
-        $("#shoppingCar_submit").css("display", "none");
-        $("#warehouse_submit").css("display", "block");
-        $("#personalStore_submit").css("display", "none");
-      } else if (selected == "personalStore_item") {
-        $(".drop_warehouse_item:not(.drop_personalStore_item)").hide();
-        $(".drop_shoppingCar_item:not(.drop_personalStore_item)").hide();
-        $(".drop_personalStore_item").show();
-
-        $("#shoppingCar_submit").css("display", "none");
-        $("#warehouse_submit").css("display", "none");
-        $("#personalStore_submit").css("display", "block");
+    $.post(baseUrl+"home/ajaxGetDropProduct", {Pidx: pid, Uidx: uid, type: storeType}, function(rtn) {
+      if (storeType == 1) {
+        $("#drop__store_shoppingCar").append(rtn); 
+      } else if (storeType == 2) {
+        $("#drop__store_warehouse").append(rtn); 
+      } else if (storeType == 3) {
+        $("#drop__store_personal").append(rtn); 
       }
     });
   }

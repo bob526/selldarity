@@ -1,7 +1,7 @@
 <?php
 
 class DepartmentsModel extends ModelBase {
-  private $_table = "departments";
+  private $_table = "department";
 
   public function __construct() {
     parent::__construct($this->_table);

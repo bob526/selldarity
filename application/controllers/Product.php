@@ -16,10 +16,29 @@ class Product extends SELLDARITY_Controller {
   }
 
   public function personalProductsManage() {
+    try {
+      $UserProductModel = Model::load("UserProductModel");
+    } catch(Exception $e) {
+      print_r(json_decode($e->getMessage()));
+      exit;
+    }
     $data = array();
     
     $data = $this->_getLayoutData($data);
+    $dropItems = $this->resetDropItem($UserProductModel->getProductsByUidx($data['uidx']));
+    $data['shoppingCar'] = $dropItems['shoppingCar'];
+    $data['warehouse'] = $dropItems['warehouse'];
+    $data['personal'] = $dropItems['personal'];
     $this->load->view('product/personalProductsManage', $data);
+  }
+
+  private function resetDropItem($allData) {
+    $rtn = array(
+      "shoppingCar" => array(),
+      "warehouse" => array(),
+      "persnoal" => array(),
+    );
+
   }
 
   public function ajaxGetProductInfo() {
@@ -27,5 +46,18 @@ class Product extends SELLDARITY_Controller {
     
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($productData);
+  }
+
+  public function ajaxDeleteStoreProduct() {
+    try {
+      $UserProductModel = Model::load("UserProductModel");
+    } catch(Exception $e) {
+      print_r(json_decode($e->getMessage()));
+      exit;
+    }
+
+    $idx = $this->input->post('idx');
+    $UserProductModel->deleteStoreProductByIdx($idx);
+    reture;
   }
 }

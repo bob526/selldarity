@@ -25,6 +25,7 @@ class SELLDARITY_Controller extends CI_Controller {
       $data['uidx'] = $this->_uidx;
       $data['userName'] = $this->session->userdata('name');
       $data['LV'] = $this->session->userdata('LV');
+      $data['picture'] = $this->session->userdata('picture');
       $data['layouthead'] = $this->load->view('layout/layouthead', $data, true);
       $data['layoutbody'] = $this->load->view('layout/layoutbody', $data, true);
       return $data;

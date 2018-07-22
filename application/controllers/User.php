@@ -21,6 +21,13 @@ class User extends SELLDARITY_Controller {
     }
   }
 
+  public function userInfo() {
+    $data = array();
+    
+    $data = $this->_getLayoutData($data);
+    $this->load->view('user/userInfo', $data);
+  }
+
   public function ajaxRegister() {
     $rtn = NONE_ERROR;
     $post = $this->input->post();
@@ -65,6 +72,7 @@ class User extends SELLDARITY_Controller {
             "name" => $userData['name'],
             "LV" => $userData['LV'],
             "email" => $userData['email'],
+            "picture" => $userData['picture_url'],
           );
           $this->session->set_userdata($data);
         } else {

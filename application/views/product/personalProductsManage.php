@@ -12,7 +12,7 @@
   <?=$layoutbody?>
   <div class="mainPage">
     <div class="title">
-      <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
+       <a href="<?=$baseUrl?>"> <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/></a>
       <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>
       <p>個人商品管理</p>
     </div>
@@ -22,9 +22,9 @@
         <p class="product_type" id="warehouse_type">虛擬倉庫</p>
         <p class="product_type" id="personal_sale_type">個人拍賣</p>
         <div class="user_message">
-          <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
-          <p>Way</p>
-          <p>LV. 100</p>
+          <img src="<?=$baseUrl?>userImg/<?php echo $picture ? $picture : "user.svg"; ?>" />
+          <p><?=$userName?></p>
+          <p>LV. <?=$LV?></p>
           <p>$ 65000</p>
           <p>推薦代碼 12345$$</p>
         </div>

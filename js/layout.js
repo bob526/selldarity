@@ -12,4 +12,7 @@ $(document).ready(() => {
     window.location.href = baseUrl+"user/signout";
   });
 
+  $("#userName").click(() => {
+    window.location.href = baseUrl+"user/userInfo";
+  });
 });

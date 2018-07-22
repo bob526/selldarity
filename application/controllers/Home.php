@@ -29,7 +29,7 @@ class Home extends SELLDARITY_Controller {
     if ($this->input->get('dep')) {
       $productDepartment = $this->input->get('dep');
     } else {
-      $productDepartment = 10;
+      $productDepartment = 1;
     }
 
     $verData = $this->input->get();
@@ -71,13 +71,13 @@ class Home extends SELLDARITY_Controller {
     $data = $this->_getLayoutData($data);
     $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments(), $productDepartment);
 
-    if ($productDepartment == 10) {
+    if ($productDepartment == 1) {
       $products = $this->ProductModel->getPopularProduct();
     } else {
       $products = $this->ProductModel->getProductsByDepartment($productDepartment);
     }
 
-    $data["products"] = $this->_calToShipPercent($products);
+    $data["products"] = $this->_calToShipPercentAndOffPrice($products);
 
     $this->load->view('mainPage/home', $data);
   }
@@ -96,9 +96,10 @@ class Home extends SELLDARITY_Controller {
     return $rtn;
   }
 
-  private function _calToShipPercent($allData) {
+  private function _calToShipPercentAndOffPrice($allData) {
     foreach ($allData as &$data) {
       $data['toShipPercent'] = floor(100*(($data['ship_Num'] - $data['to_Ship'])/$data['ship_Num']));
+      $data['off_Price'] = floor($data['ori_Price']*((100-$data['off_Percent'])/100));
     }
 
     return $allData;
@@ -130,6 +131,7 @@ class Home extends SELLDARITY_Controller {
     $data["baseUrl"] = $this->_baseUrl;
     $data["product"] = $this->ProductModel->getProductById($pid);
     $data["product"]['toShipPercent'] = floor(100*(($data["product"]['ship_Num'] - $data["product"]['to_Ship'])/$data["product"]['ship_Num']));
+    $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
     $data['freight'] = $FreightModel->getAllFreight();
     $rtn = $this->load->view('mainPage/productDetailInfo', $data, true);
 
@@ -146,11 +148,28 @@ class Home extends SELLDARITY_Controller {
     }
     $pid = $this->input->post("Pidx");
     $uid = $this->input->post("Uidx");
+    $type = $this->input->post("type");
     $data = array();
     $data["baseUrl"] = $this->_baseUrl;
     $data["product"] = $this->ProductModel->getProductById($pid);
-    $data["warehouseProduct"] = $UserProductModel->getWarehouseProductByUidAndPid($uid, $pid);
-    $rtn = $this->load->view('mainPage/dropItem', $data, true);
+    $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
+    if ($storeProduct = $UserProductModel->getStoreProductByUidPidType($uid, $pid, $type)) {
+      $data['numOfStoreProduct'] = $storeProduct['number'];
+      $data['storeProductId'] = $storeProduct['idx'];
+    } else {
+      $data['numOfStoreProduct'] = 0;
+      $data["storeProductId"] = $UserProductModel->insert($uid, $pid, $type, $this->_formattedNow);
+    }
+
+    if ($type == 1) {
+      $rtn = $this->load->view('mainPage/dropItemShoppingCar', $data, true);
+    } else if ($type == 2) {
+      $data['numOfWarehouseProduct'] = 0;
+      $rtn = $this->load->view('mainPage/dropItemWarehouse', $data, true);
+    } else if ($type == 3) {
+      $data['numOfWarehouseProduct'] = 0;
+      $rtn = $this->load->view('mainPage/dropItemPersonal', $data, true);
+    }
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($rtn);
