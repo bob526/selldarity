@@ -8,11 +8,11 @@ $(document).ready(() => {
       $("#overall").css("display", "none");
   });
 
-  $("#signOut").click(() => {
-    window.location.href = baseUrl+"user/signout";
+  $("#logout").click(() => {
+    window.location.href = baseUrl+"Authority/logout";
   });
 
   $("#userName").click(() => {
-    window.location.href = baseUrl+"user/userInfo";
+    window.location.href = baseUrl+"user/userInfo/1";
   });
 });

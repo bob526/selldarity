@@ -339,7 +339,7 @@
 }
 
 .drop__store {
-  height: 400px;
+  height: 410px;
   background: url("images/ADD.svg") no-repeat;
   background-size: 200px 200px;
   background-position: center;
@@ -501,7 +501,7 @@
 }
 
 .manage_drop {
-  height: 420px;
+  height: 430px;
   overflow-y: auto;
 }
 
@@ -632,7 +632,7 @@
   margin-right: 10px;
   background: #fff;
   box-shadow: 0px 0px 5px 2px rgba(20%,20%,40%,0.2);
-  height: 100%;
+  height: 600px;
 }
 
 .productDetailInfo {
@@ -653,7 +653,7 @@
   margin-top: 10px;
 }
 
-.signInWindow__inside__content, .registerWindow__inside__content {
+.loginWindow__inside__content, .registerWindow__inside__content {
   text-align: center;
   width: 400px;
   background: #fff;
@@ -664,11 +664,11 @@
   font-weight: bold;
 }
 
-.signInWindow__inside__content p {
+.loginWindow__inside__content p {
   padding: 10px 0px;
   font-weight: bold;
 }
-.signInWindow__inside__content input, .registerWindow__inside__content input {
+.loginWindow__inside__content input, .registerWindow__inside__content input {
   width: 90%;
   font-size: 15px;
   margin: 10px auto;
@@ -678,14 +678,14 @@
   border-radius: 5px;
 }
 
-.signInWindow__inside__content input[type="submit"], .registerWindow__inside__content input[type="submit"] {
+.loginWindow__inside__content input[type="submit"], .registerWindow__inside__content input[type="submit"] {
   background-color: red;
   color: #FFF;
   border-style: none;
   border-radius: 20px;
 }
 
-.signInToRegister, .registerToSignIn {
+.loginToRegister, .registerToSignIn {
   color: #0066FF;
   padding-left: 5px;
   cursor: pointer;

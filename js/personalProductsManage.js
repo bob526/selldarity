@@ -39,8 +39,20 @@ $(document).ready(() => {
     }
   });
 
+  $("#warehouse_purchase_checkAll").click(function() {
+    let checkAll = $(this).parent().find("input[type='checkbox']");
+
+    if (checkAll.prop("checked")) {
+      $(".warehouse_purchase_checkProductItem").prop("checked", true);
+    } else {
+      $(".warehouse_purchase_checkProductItem").prop("checked", false);
+    }
+  });
+
   $(".delete_item").click(function() {
+    let storeProductIdx = $(this).data("storeproduct");
     $(this).parent().remove();
+    $.post(baseUrl+"product/ajaxDeleteStoreProduct", {idx: storeProductIdx});
   });
 
   $(".counter__button").click(function() {

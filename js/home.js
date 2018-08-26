@@ -7,8 +7,8 @@ $(document).ready(() => {
     });
   });
 
-  $("#signIn").click(() => {
-    $.post(baseUrl+"home/ajaxGetSignInWindow", function(rtn) {
+  $("#login").click(() => {
+    $.post(baseUrl+"home/ajaxGetLoginWindow", function(rtn) {
       $("#dialogWindow__inside").append(rtn); 
       $("#dialogArea").css("display", "block");
     });
@@ -86,9 +86,9 @@ $(document).ready(() => {
     let scrollVal = $(this).scrollTop();
 
     if (scrollVal > claScrTop) {
-      $("#classification__container").css({"position": "fixed", "top": "65px"});
+      $("#classification__container").css({"position": "fixed", "top": "50px"});
       $("#show_products").css({"margin": "0 0 0 15.3%"});
-      $("#products_manage").css({"position": "fixed", "top": "65px", "right": "0px"});
+      $("#products_manage").css({"position": "fixed", "top": "50px", "right": "0px"});
     } else {
       $("#classification__container").css({"position": "static", "top": ""});
       $("#show_products").css({"margin": "0 auto"});
@@ -98,6 +98,27 @@ $(document).ready(() => {
 
   $("#manage_title").click(function() {
     window.location = baseUrl+"product/personalProductsManage"
+  });
+
+
+  $(".drop_item_close").click(function() {
+    let storeProductIdx = $(this).data("storeproduct");
+    $(this).parent().remove();
+    $.post(baseUrl+"product/ajaxDeleteStoreProduct", {idx: storeProductIdx});
+  });
+
+  $(".counter__button").click(function() {
+    let counterNum = $(this).parent().children(".counter__number");
+    let insertNum = 0;
+
+    if ($(this).html() == "+") {
+      insertNum = parseInt(counterNum.html()) + 1;
+    } else {
+      insertNum = parseInt(counterNum.html()) - 1;
+      if (insertNum < 0) insertNum = 0;
+    }
+
+    counterNum.html(insertNum);
   });
 });
 
@@ -207,7 +228,7 @@ function Drag(productId) {
 }
 
 function Drop() {
-  if (checkSignIn()) {
+  if (checkLogin()) {
     let storeType = $(".manage_select_cal").data("item");
 
     $.post(baseUrl+"home/ajaxGetDropProduct", {Pidx: pid, Uidx: uid, type: storeType}, function(rtn) {
@@ -222,7 +243,7 @@ function Drop() {
   }
 }
 
-function checkSignIn() {
+function checkLogin() {
   let rtn = false;
 
   if (uid == "") {

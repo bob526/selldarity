@@ -33,6 +33,10 @@ span:focus {
   outline:none;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   height: 100%;
   background-color: #EEEEEE;
@@ -40,7 +44,6 @@ body {
 
 header {
   width: 100%;
-  padding-top: 10px;
   top: 0;
   position: fixed;
   background-color: #EEEEEE;
@@ -78,7 +81,6 @@ header div p:not(.userPicture) {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
-  margin-top: -75px;
   padding-top: 70px;
 }
 
@@ -93,8 +95,9 @@ header div p:not(.userPicture) {
   position: relative;
 }
 
-.mainPage {
-  margin-top: 75px;
+.headerHeight {
+  height: 10%;
+  width: 100%;
 }
 
 .logo {
@@ -122,7 +125,7 @@ header div p:not(.userPicture) {
 }
 
 .rightHeaderInfo div {
-  padding: 30px 15px 20px 15px;
+  padding: 15px;
   margin: 0;
   cursor: pointer;
 }
@@ -156,6 +159,10 @@ header div p:not(.userPicture) {
   box-shadow: 4px 4px 12px 4px rgba(20%,20%,40%,0.2);
 }
 
+.mainPage {
+  height: 90%;
+}
+
 .menuList {
   margin: 0;
   padding: 10px 20px;
@@ -174,12 +181,12 @@ header div p:not(.userPicture) {
   cursor: pointer;
 }
 
-.signOut {
+.logout {
   padding: 15px 20px;
   border-top: 1px solid #AAA;
   color: red;
 }
-.signIn {
+.login {
   background-color: transparent;
   border: 1px #000000 solid;
   border-radius: 100px;

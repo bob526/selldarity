@@ -7,7 +7,7 @@
     <li class="menuList">問題回報</li>
     <li class="menuList">關於團隊拍賣</li>
     <?php if ($uidx) : ?>
-      <li id="signOut" class="menuList signOut">登出</li>
+      <li id="logout" class="menuList logout">登出</li>
     <?php endif; ?>
   </ul>
 </div>
@@ -24,7 +24,7 @@
           <p class="level">LV.<?=$LV?></p>
         <?php else : ?>
           <p class="register" id="register">註冊</p>
-          <button class="signIn" id="signIn">登入</button>
+          <button class="login" id="login">登入</button>
         <?php endif; ?>
       </div>
       <div class="rightHeaderInfo">
@@ -48,9 +48,11 @@
   <div class="dialogWindow__outside">
     <div id="dialogWindow__inside" class="dialogWindow__inside">
       <span class="close" id="close">&times;</span>
-      <?php if (isset($registeredInfo)): ?>
+      <?php if ($registeredInfo): ?>
         <?=$registeredInfo?>
       <?php endif; ?>
     </div>
   </div>
+</div>
+<div class="headerHeight">
 </div>

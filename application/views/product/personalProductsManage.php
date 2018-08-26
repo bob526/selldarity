@@ -12,9 +12,10 @@
   <?=$layoutbody?>
   <div class="mainPage">
     <div class="title">
-       <a href="<?=$baseUrl?>"> <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/></a>
-      <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>
-      <p>個人商品管理</p>
+       <a href="<?=$baseUrl?>"> <img src="<?=$baseUrl?>/css/images/arrow-white-point-to-left.svg"/>
+        <img src="<?=$baseUrl?>/css/images/shopping-cart-settings-white.svg"/>
+        <p>個人商品管理</p>
+      </a>
     </div>
     <div class="pure-g products_manage">
       <div class="pure-u-3-24 products_manage_left">
@@ -46,51 +47,30 @@
                 <div class="pure-u-3-24 shoppingCar_column">總計</div>
                 <div class="pure-u-2-24 shoppingCar_column">操作</div>
               </div>
-
+          
+              <?php foreach ($shoppingCar as $item) :?>
               <div class="pure-g shoppingCar_row">
                 <div class="pure-u-2-24 shoppingCar_column checkBox_container">
                   <input type="checkbox" class="shoppingCar_checkProductItem">
                   <span class="checkmark"></span>
                 </div>
                 <div class="pure-u-4-24 shoppingCar_column">
-                  <img src="<?=$baseUrl?>/products/1/1"/> 
+                  <img src="<?=$baseUrl?>/products/<?=$item['idx']?>/1"/> 
                 </div>
-                <div class="pure-u-4-24 shoppingCar_column">iphone 7</div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>10% off</b></div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>&#36; <del>20000</del><span>﹥</span>15000</b></div>
+                <div class="pure-u-4-24 shoppingCar_column"><?=$item['name']?></div>
+                <div class="pure-u-3-24 shoppingCar_column"><b><?=$item['off_Percent']?>% off</b></div>
+                <div class="pure-u-3-24 shoppingCar_column"><b>&#36; <del><?=$item['ori_Price']?></del><span>﹥</span><?=$item['off_Price']?></b></div>
                 <div class="pure-u-3-24 shoppingCar_column">
                   <div class="counter">
                     <p id="counter-reduce" class="counter__button" style="border-right:solid 1px #000;">-</p>
-                    <p id="counter-number" class="counter__number">0</p>
+                    <p id="counter-number" class="counter__number"><?=$item['number']?></p>
                     <p id="counter-add" class="counter__button" style="border-left:solid 1px #000;">+</p>
                   </div>
                 </div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>100000</b></div>
-                <div class="pure-u-2-24 shoppingCar_column shoppingCar_item_delete">刪除</div>
+                <div class="pure-u-3-24 shoppingCar_column"><b><?=$item['number']?></b></div>
+                <div class="pure-u-2-24 shoppingCar_column delete_item" data-storeproduct="<?=$item['storeProductId']?>">刪除</div>
               </div>
-
-              <div class="pure-g shoppingCar_row">
-                <div class="pure-u-2-24 shoppingCar_column checkBox_container">
-                  <input type="checkbox" class="shoppingCar_checkProductItem">
-                  <span class="checkmark"></span>
-                </div>
-                <div class="pure-u-4-24 shoppingCar_column">
-                  <img src="<?=$baseUrl?>/products/1/1"/> 
-                </div>
-                <div class="pure-u-4-24 shoppingCar_column">iphone 7</div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>10% off</b></div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>&#36; <del>20000</del><span>﹥</span>15000</b></div>
-                <div class="pure-u-3-24 shoppingCar_column">
-                  <div class="counter">
-                    <p id="counter-reduce" class="counter__button" style="border-right:solid 1px #000;">-</p>
-                    <p id="counter-number" class="counter__number">0</p>
-                    <p id="counter-add" class="counter__button" style="border-left:solid 1px #000;">+</p>
-                  </div>
-                </div>
-                <div class="pure-u-3-24 shoppingCar_column"><b>100000</b></div>
-                <div class="pure-u-2-24 shoppingCar_column delete_item">刪除</div>
-              </div>
-
+              <?php endforeach; ?>
             </div>
 
             <div class="warehouse_products warehouse_type">
@@ -119,7 +99,7 @@
                   <div class="pure-u-3-24 warehouse_column">個人拍賣</div>
                   <div class="pure-u-2-24 warehouse_column">操作</div>
                 </div>
-          
+                
                 <div class="pure-g warehouse_row">
                   <div class="pure-u-2-24 warehouse_column checkBox_container">
                     <input type="checkbox" class="warehouse_store_checkProductItem">
@@ -130,12 +110,12 @@
                   </div>
                   <div class="pure-u-5-24 warehouse_column">iphone 7</div>
                   <div class="pure-u-4-24 warehouse_column">10</div>
-                  <div class="pure-u-4-24 warehouse_column"><b>$0.5元</b>/件</div>
+                  <div class="pure-u-4-24 warehouse_column"><b>$29999元</b>/件</div>
                   <div class="pure-u-3-24 warehouse_column checkBox_container">
                     <input type="checkbox">
                     <span class="checkmark" id="warehouse_checkAll"></span>
                   </div>
-                  <div class="pure-u-2-24 warehouse_column delete_item">退貨</div>
+                  <div class="pure-u-2-24 warehouse_column">退貨</div>
                 </div>
               </div>
 
@@ -154,27 +134,29 @@
                   <div class="pure-u-2-24 warehouse_column">操作</div>
                 </div>
           
+                <?php foreach ($warehouse as $item): ?> 
                 <div class="pure-g warehouse_row">
                   <div class="pure-u-2-24 warehouse_column checkBox_container">
                     <input type="checkbox" class="warehouse_purchase_checkProductItem">
                     <span class="checkmark"></span>
                   </div>
                   <div class="pure-u-4-24 warehouse_column">
-                    <img src="<?=$baseUrl?>/products/1/1"/> 
+                    <img src="<?=$baseUrl?>/products/<?=$item['idx']?>/1"/> 
                   </div>
-                  <div class="pure-u-4-24 warehouse_column">iphone 7</div>
-                  <div class="pure-u-3-24 warehouse_column">$34566</div>
+                  <div class="pure-u-4-24 warehouse_column"><?=$item['name']?></div>
+                  <div class="pure-u-3-24 warehouse_column">$<?=$item['off_Price']?></div>
                   <div class="pure-u-3-24 warehouse_column">$4567</div>
                   <div class="pure-u-4-24 warehouse_column">
                     <div class="counter">
                       <p id="counter-reduce" class="counter__button" style="border-right:solid 1px #000;">-</p>
-                      <p id="counter-number" class="counter__number">0</p>
+                      <p id="counter-number" class="counter__number"><?=$item['number']?></p>
                       <p id="counter-add" class="counter__button" style="border-left:solid 1px #000;">+</p>
                     </div>
                   </div>
                   <div class="pure-u-2-24 warehouse_column">退貨</div>
-                  <div class="pure-u-2-24 warehouse_column delete_item">刪除</div>
+                  <div class="pure-u-2-24 warehouse_column delete_item" data-storeproduct="<?=$item['storeProductId']?>">刪除</div>
                 </div>
+                <?php endforeach ?>
               </div>
             </div>
 
@@ -202,14 +184,15 @@
                   <div class="pure-u-2-24 personal_sale_column">操作</div>
                 </div>
           
+                <?php foreach ($personal as $item) : ?>
                 <div class="pure-g personal_sale_row">
                   <div class="pure-u-4-24 personal_sale_column">
-                    <img src="<?=$baseUrl?>/products/1/1"/> 
+                  <img src="<?=$baseUrl?>/products/<?=$item['idx']?>/1"/> 
                   </div>
-                  <div class="pure-u-5-24 personal_sale_column">iphone 7</div>
+                  <div class="pure-u-5-24 personal_sale_column"><?=$item['name']?></div>
                   <div class="pure-u-3-24 personal_sale_column">10</div>
-                  <div class="pure-u-3-24 personal_sale_column">$30000</div>
-                  <div class="pure-u-3-24 personal_sale_column">40%off</div>
+                  <div class="pure-u-3-24 personal_sale_column">$<?=$item['ori_Price']?></div>
+                  <div class="pure-u-3-24 personal_sale_column"><?=$item['off_Percent']?>%off</div>
                   <div class="pure-u-4-24 personal_sale_column">
                     <div class="counter">
                       <p id="counter-reduce" class="counter__button" style="border-right:solid 1px #000;">-</p>
@@ -218,8 +201,9 @@
                     </div>
                     %off
                   </div>
-                  <div class="pure-u-2-24 personal_sale_column delete_item">退貨</div>
+                  <div class="pure-u-2-24 personal_sale_column delete_item" data-storeproduct="<?=$item['storeProductId']?>">刪除</div>
                 </div>
+                <?php endforeach; ?>
               </div>
 
               <div class="personal_sale_state">
@@ -253,7 +237,7 @@
             <p>商品總金額 $123420</p>
             <p>運費總額 $80</p>
             <p>總付款金額: <b>$123500</b></p>
-            <div class="products_type_button"><button><img src="<?=$baseUrl?>/css/images/warehouse_red.svg" />推薦人代碼</button></div>
+            <div class="products_type_button"><button><img src="<?=$baseUrl?>/css/images/coupon_red.svg" />推薦人代碼</button></div>
             <div class="products_type_button"><button><img src="<?=$baseUrl?>/css/images/warehouse_red.svg" />進貨至需倉庫</button></div>
             <div class="products_type_shopping_button"><button><img src="<?=$baseUrl?>/css/images/shopping_cart_white.svg" />直接訂購</button></div>
           </div>
@@ -275,9 +259,9 @@
           </div>
 
           <div class="personal_sale_type products_manage_foot_contain">
-            <div class="products_type_shopping_button"><button><img src="<?=$baseUrl?>/css/images/shopping_cart_white.svg" />我要供貨</button></div>
-            <div class="products_type_button"><button><img src="<?=$baseUrl?>/css/images/warehouse_red.svg" />生成網址連結</button></div>
-            <div class="products_type_shopping_button"><button><img src="<?=$baseUrl?>/css/images/shopping_cart_white.svg" />推廣個人賣場</button></div>
+            <div class="products_type_shopping_button"><button><img src="<?=$baseUrl?>/css/images/conveyor_white.svg" />我要供貨</button></div>
+            <div class="products_type_button"><button><img src="<?=$baseUrl?>/css/images/qr_code_red.svg" />生成網址連結</button></div>
+            <div class="products_type_shopping_button"><button><img src="<?=$baseUrl?>/css/images/share_outlined_button_white.svg" />推廣個人賣場</button></div>
           </div>
         </div>
       </div>

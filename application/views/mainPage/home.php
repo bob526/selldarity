@@ -117,10 +117,59 @@
         </div>
         <div class="manage_drop" ondragover="AllowDrop(event)" ondrop="Drop()">
           <div id="drop__store_shoppingCar" class="drop__store drop__store_shoppingCar">
+            <?php foreach ($shoppingCar as $product) : ?>
+            <div class="pure-g drop_item">
+              <span class="drop_item_close" data-storeproduct="<?=$product['storeProductId']?>">&times;</span>
+              <img class="pure-u-1-3" src="<?=$baseUrl?>products/<?=$product['idx']?>/1"/> 
+              <div class="pure-u-14-24">
+                <p><?=$product['name']?></p>
+                <p class="drop_item_highligh drop_shoppingCar_item"><b>&#36; <del><?=$product['ori_Price']?></del><span>﹥</span><?=$product['off_Price']?></b></p>
+                <div class="drop_item_number drop_shoppingCar_item">
+                    個數:
+                  <div class="counter">
+                    <p class="counter__button" style="border-right:solid 1px #000;">-</p>
+                    <p class="counter__number"><?=$product['number']?></p>
+                    <p class="counter__button" style="border-left:solid 1px #000;">+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
           </div>
           <div id="drop__store_warehouse" class="drop__store drop__store_warehouse">
+            <?php foreach ($warehouse as $product) : ?>
+            <div class="pure-g drop_item">
+              <span class="drop_item_close" data-storeproduct="<?=$product['storeProductId']?>">&times;</span>
+              <img class="pure-u-1-3" src="<?=$baseUrl?>products/<?=$product['idx']?>/1"/> 
+              <div class="pure-u-14-24">
+                <p class="storeProduct"><?=$product['name']?></p>
+                <p class="drop_item_highligh drop_warehouse_item">費用: <b>&#36;<?=$product['storage_Cost']?></b> * 0元/日</p>
+                <p class="drop_item_highligh drop_warehouse_item drop_personalStore_item">個人庫存: <b></b> 個</p>
+                <div class="drop_item_number drop_shoppingCar_item drop_warehouse_item">
+                個數:
+                  <div class="counter">
+                    <p class="counter__button" style="border-right:solid 1px #000;">-</p>
+                    <p class="counter__number"><?=$product['number']?></p>
+                    <p class="counter__button" style="border-left:solid 1px #000;">+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
           </div>
           <div id="drop__store_personal" class="drop__store drop__store_personal">
+            <?php foreach ($personal as $product) :?>
+            <div class="pure-g drop_item">
+              <span class="drop_item_close" data-storeproduct="<?=$product['storeProductId']?>">&times;</span>
+              <img class="pure-u-1-3" src="<?=$baseUrl?>products/<?=$product['idx']?>/1"/> 
+              <div class="pure-u-14-24">
+                <p class="storeProduct"><?=$product['name']?></p>
+                <p class="drop_personalStore_item">原價: <?=$product['ori_Price']?></p>
+                <p class="drop_item_highligh drop_warehouse_item drop_personalStore_item">個人庫存: <b></b> 個</p>
+                <p class="drop_item_highligh drop_personalStore_item">進貨折扣: <b><?=$product['off_Percent']?>% off</b></p>
+              </div>
+            </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <div id="shoppingCar_submit" class="shoppingCar_submit manage_submit">

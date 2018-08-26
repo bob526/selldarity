@@ -1,8 +1,8 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-define("NONE_ERROR", 0);
+include_once __DIR__ . "/Authority.php";
 
-class Home extends SELLDARITY_Controller {
+class Home extends Authority {
   
   private $ProuctModel = null;
 
@@ -18,66 +18,26 @@ class Home extends SELLDARITY_Controller {
   }
 
   public function mainPage() {
-    $data = array();
     try {
       $DepartmentsModel = Model::load("DepartmentsModel");
+      $UserProductModel = Model::load("UserProductModel");
     } catch(Exception $e) {
       print_r(json_decode($e->getMessage()));
       exit;
     }
-
-    if ($this->input->get('dep')) {
-      $productDepartment = $this->input->get('dep');
-    } else {
-      $productDepartment = 1;
-    }
-
-    $verData = $this->input->get();
-    if (isset($verData['i']) && isset($verData['ver'])) {
-      try {
-        $UserModel = Model::load("UserModel");
-      } catch(Exception $e) {
-        print_r(json_decode($e->getMessage()));
-        exit;
-      }
-
-      $userData = $UserModel->getUserDataByIdx($verData['i']);
-      if ($userData['verCode'] == $verData['ver']) {
-        $rtn = $UserModel->verifyUser($userData['idx'], $this->_formattedNow);
-        if (!$rtn) {
-          $sessionData = array(
-            "uidx" => $userData['idx'],
-            "name" => $userData['name'],
-            "LV" => $userData['LV'],
-            "email" => $userData['email'],
-          );
-          $this->session->set_userdata($sessionData);
-          $this->_uidx = $userData['idx'];
-          $registeredInfo = $this->load->view('mainPage/registeredInfo', array('baseUrl' => $this->_baseUrl), true);
-        } else {
-          header("Location:{$this->_errorPage}Update verification error");
-          exit;
-        }
-      } else {
-        header("Location:{$this->_errorPage}Haven't verified");
-        exit;
-      }
-    } 
-
-    if (isset($registeredInfo)) {
-      $data["registeredInfo"] = $registeredInfo;
-    }
+    $data = array();
+    $productDepartment = $this->input->get('dep') ? $this->input->get('dep'): 1;
+    $data["registeredInfo"] = $this->_verificationCheck($idx = $this->input->get('i'), $ver = $this->input->get('ver'));
 
     $data = $this->_getLayoutData($data);
     $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments(), $productDepartment);
 
-    if ($productDepartment == 1) {
-      $products = $this->ProductModel->getPopularProduct();
-    } else {
-      $products = $this->ProductModel->getProductsByDepartment($productDepartment);
-    }
+    $data["products"] = ($productDepartment == 1) ? $this->ProductModel->getPopularProduct() : $this->ProductModel->getProductsByDepartment($productDepartment);
 
-    $data["products"] = $this->_calToShipPercentAndOffPrice($products);
+    $dropItems = $this->_resetDropItem($UserProductModel->getProductsByUidx($data['uidx']));
+    $data['shoppingCar'] = $dropItems['shoppingCar'];
+    $data['warehouse'] = $dropItems['warehouse'];
+    $data['personal'] = $dropItems['personal'];
 
     $this->load->view('mainPage/home', $data);
   }
@@ -96,15 +56,6 @@ class Home extends SELLDARITY_Controller {
     return $rtn;
   }
 
-  private function _calToShipPercentAndOffPrice($allData) {
-    foreach ($allData as &$data) {
-      $data['toShipPercent'] = floor(100*(($data['ship_Num'] - $data['to_Ship'])/$data['ship_Num']));
-      $data['off_Price'] = floor($data['ori_Price']*((100-$data['off_Percent'])/100));
-    }
-
-    return $allData;
-  }
-
   public function ajaxGetRegisterWindow() {
     $rtn = $this->load->view('mainPage/registerWindow', array("baseUrl" => $this->_baseUrl), true);
 
@@ -112,8 +63,8 @@ class Home extends SELLDARITY_Controller {
     echo json_encode($rtn);
   } 
 
-  public function ajaxGetSignInWindow() {
-    $rtn = $this->load->view('mainPage/signInWindow', array("baseUrl" => $this->_baseUrl), true);
+  public function ajaxGetLoginWindow() {
+    $rtn = $this->load->view('mainPage/loginWindow', array("baseUrl" => $this->_baseUrl), true);
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($rtn);

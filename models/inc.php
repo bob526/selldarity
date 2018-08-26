@@ -5,7 +5,7 @@ include_once _DIR_MODEL_.'/constants.php';
 include_once _DIR_MODEL_.'/ErrorHdr.php';
 
 
-function __autoload($class) {
+function ModelLoad($class) {
   if (strpos($class, 'SELLDARITY_') !== false || strpos($class, 'CI_') !== false) {
     return class_exists($class, false);
   } else {
@@ -21,6 +21,8 @@ function __autoload($class) {
     return true;
   }
 }
+
+spl_autoload_register("ModelLoad");
 
 class Model {
   

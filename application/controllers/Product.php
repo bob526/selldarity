@@ -1,12 +1,16 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Product extends SELLDARITY_Controller {
+include_once __DIR__ . "/Authority.php";
+
+class Product extends Authority {
   
   private $ProductModel = null;
 
   public function __construct() {
     parent::__construct();
     
+    $this->auth();
+
     try {
       $this->ProductModel = Model::load("ProductModel");
     } catch(Exception $e) {
@@ -25,20 +29,11 @@ class Product extends SELLDARITY_Controller {
     $data = array();
     
     $data = $this->_getLayoutData($data);
-    $dropItems = $this->resetDropItem($UserProductModel->getProductsByUidx($data['uidx']));
+    $dropItems = $this->_resetDropItem($UserProductModel->getProductsByUidx($data['uidx']));
     $data['shoppingCar'] = $dropItems['shoppingCar'];
     $data['warehouse'] = $dropItems['warehouse'];
     $data['personal'] = $dropItems['personal'];
     $this->load->view('product/personalProductsManage', $data);
-  }
-
-  private function resetDropItem($allData) {
-    $rtn = array(
-      "shoppingCar" => array(),
-      "warehouse" => array(),
-      "persnoal" => array(),
-    );
-
   }
 
   public function ajaxGetProductInfo() {
