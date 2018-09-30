@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="pure-u-16-24 pure-g transaction_type_shopping">
+      <div class="pure-u-15-24 pure-g transaction_type_shopping">
         <span class="pure-u-1-5 transaction_type_item_row transaction_type_shopping_selected">待付款</span>
         <span class="pure-u-1-5 transaction_type_item_row">待收貨</span>
         <span class="pure-u-1-5 transaction_type_item_row">交易中</span>

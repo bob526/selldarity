@@ -19,7 +19,7 @@
     </div>
     <div class="pure-g userInfo">
       <div class="userInfo_left">
-        <a class="userInfo_type" href="<?=$baseUrl?>/user/userInfo/1">個人帳戶</a>
+        <a class="userInfo_type userInfo_type_focus" href="<?=$baseUrl?>/user/userInfo/1">個人帳戶</a>
         <a class="userInfo_type" href="<?=$baseUrl?>/user/userInfo/2">銷售紀錄</a>
         <a class="userInfo_type" href="<?=$baseUrl?>/user/userInfo/3">交易動態</a>
         <a class="userInfo_type" href="<?=$baseUrl?>/user/userInfo/4">個人賣場</a>

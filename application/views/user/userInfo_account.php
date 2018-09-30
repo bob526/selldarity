@@ -27,9 +27,9 @@
               <input type="text" name="marketName" value="<?=$marketName?>"/>
             </div>
             <div class="user_data_row user_data_gender">
-              <div><input type="radio" name="gender" checked="<?= $gender == 1 ? 'checked' : ''?>"/>男性</div>
-              <div><input type="radio" name="gender" checked="<?= $gender == 0 ? 'checked' : ''?>"/>女性</div>
-              <div><input type="radio" name="gender" checked="<?= $gender == 2 ? 'checked' : ''?>"/>其他</div>
+              <div><input type="radio" name="gender" <?= $gender == 1 ? 'checked' : ''?>/>男性</div>
+              <div><input type="radio" name="gender" <?= $gender == 0 ? 'checked' : ''?>/>女性</div>
+              <div><input type="radio" name="gender" <?= $gender == 2 ? 'checked' : ''?>/>其他</div>
             </div>
             <div class="user_data_row user_data_birthday">
               <input type="date" name="birthday" value="<?=$birthday?>"/>

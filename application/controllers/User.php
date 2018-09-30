@@ -35,6 +35,9 @@ class User extends Authority {
     case USER_ACCOUNT :
       $data['email'] = $this->_userInfo['email'];
       $data['phone'] = $this->_userInfo['phone'];
+      $data['marketName'] = $this->_userInfo['marketName'];
+      $data['gender'] = $this->_userInfo['gender'];
+      $data['birthday'] = $this->_userInfo['birthday'];
       $data['userInfoType'] = $this->load->view('user/userInfo_account', $data, true);
       break;
     case SALE_RECORD :

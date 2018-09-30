@@ -9,5 +9,5 @@
   <p class="rememberMe">記住我</p>
   <p class="forgotLink"><a href="#">忘記密碼?</a></p>
   <input type="submit" id="loginSubmit" value="登入">
-  <p>還沒加入團結拍賣? <span class="loginToRegister">登入</span></p>
+  <p>還沒加入團結拍賣? <span id="loginToRegister" class="loginToRegister">註冊</span></p>
 </div>

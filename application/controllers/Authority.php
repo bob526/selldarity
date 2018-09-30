@@ -41,6 +41,10 @@ class Authority extends SELLDARITY_Controller {
             "name" => $userData['name'],
             "LV" => $userData['LV'],
             "email" => $userData['email'],
+            "phone" => $userData['phone'],
+            "marketName" => $userData['marketName'],
+            "gender" => $userData['gender'],
+            "birthday" => $userData['birthday'],
             "picture" => $userData['picture_url'],
           ));
         } else {

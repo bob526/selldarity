@@ -70,6 +70,22 @@ $("#detailInfo__rightArrow").click(function() {
   $("#mainImg").attr("src", otherImg.eq(num).attr("src"));
 });
 
+$("#loginToRegister").click(function() {
+  $.post(baseUrl+"home/ajaxGetRegisterWindow", function(rtn) {
+    $("#dialogWindow__inside div").remove();
+    $("#dialogWindow__inside").append(rtn); 
+    $("#dialogArea").css("display", "block");
+  });
+});
+
+$("#registerToSignIn").click(function() {
+  $.post(baseUrl+"home/ajaxGetLoginWindow", function(rtn) {
+    $("#dialogWindow__inside div").remove();
+    $("#dialogWindow__inside").append(rtn); 
+    $("#dialogArea").css("display", "block");
+  });
+});
+
 function findSelectedIndex(otherImg) {
   var rtn = 0;
 

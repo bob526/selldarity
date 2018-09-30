@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $(".userInfo_type").each(function() {
     if ($(this).attr("href") == location.href) {
+      $(".userInfo_type").removeClass('userInfo_type_focus');
       $(this).addClass('userInfo_type_focus'); 
       return false;
     }

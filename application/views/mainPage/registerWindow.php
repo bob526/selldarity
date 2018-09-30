@@ -10,7 +10,7 @@
     <input type="password"  required="required" placeholder="密碼" id="registerPassword"/>
     <input type="text"  required="required" placeholder="我們該怎麼稱呼你?" id="registerUserName"/>
     <input type="submit" id="registerSubmit" value="註冊">
-    <p>已經加入團結拍賣? <span class="registerToSignIn">登入</span></p>
+    <p>已經加入團結拍賣? <span id="registerToSignIn" class="registerToSignIn">登入</span></p>
   </div>
   <div class="verMailInfo" id="verMailInfo">
     <p>驗證信已寄送至您的信箱，</br>驗證後就可以開始在團結拍賣購物囉</p>
