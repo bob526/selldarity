@@ -64,6 +64,7 @@ class Authority extends SELLDARITY_Controller {
   public function ajaxRegister() {
     try {
       $UserModel = Model::load("UserModel");
+      $VerificationModel = Model::load("VerificationModel");
     } catch(Exception $e) {
       print_r(json_decode($e->getMessage()));
       exit;
@@ -75,7 +76,8 @@ class Authority extends SELLDARITY_Controller {
 
     if(!($this->_checkEmail($email, $UserModel))) {
       $verCode = md5($this->_formattedNow);
-      $uidx = $UserModel->insert($email, $password, $userName, $verCode, $this->_formattedNow); 
+      $uidx = $UserModel->insert($email, $password, $userName, $this->_formattedNow); 
+      $rtn = $VerificationModel->insert($uidx, $verCode, $this->_formattedNow);
       //The function will work when the environment get ready.
       //$rtn = $this->_sendVerificationMail($email, $uidx, $verCode);
     } else {
@@ -109,12 +111,15 @@ class Authority extends SELLDARITY_Controller {
     if ($idx && $ver) {
       try {
         $UserModel = Model::load("UserModel");
+        $VerificationModel = Model::load("VerificationModel");
       } catch(Exception $e) {
         print_r(json_decode($e->getMessage()));
         exit;
       }
 
-      $userData = $UserModel->getUserDataByIdx($idx);
+      $verData = $VerificationModel->getByUserId($idx);
+
+
       if ($userData['verCode'] == $ver) {
         $rtn = $UserModel->verifyUser($userData['idx'], $this->_formattedNow);
         if (!$rtn) {

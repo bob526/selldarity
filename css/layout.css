@@ -24,7 +24,7 @@ time, mark, audio, video {
 ::-moz-selection {
   background: transparent;
 }
-input, button, a , select {
+input, button, a , select, textarea {
   outline: none;
   text-decoration: none;
 }
@@ -105,13 +105,12 @@ header div p:not(.userPicture) {
   height: auto;
 }
 
-.notification, .question, .search, .tri_point {
-  width: 30px;
-  height: auto;
-}
-
 .rightHeader {
   text-align: right;
+}
+
+.rightHeader > * {
+  display: inline-block;
 }
 
 .rightHeader * , .leftHeader *{
@@ -124,59 +123,137 @@ header div p:not(.userPicture) {
   margin-left: 15px;
 }
 
-.rightHeaderInfo div {
+.rightHeaderInfo > li {
   padding: 15px;
-  margin: 0;
+  margin: 0px;
+  height: 30px;
   cursor: pointer;
+  display: inline-block;
+  position: relative;
 }
 
-.rightHeaderInfo div:hover {
+.rightHeaderInfo > li:hover {
   background-color: #ddd;
 }
 
-.rightHeaderInfo div img {
-  margin: 0;
+.rightHeaderInfo > li > img {
+  width: 30px;
 }
 
-.overall {
-  position: fixed;
-  margin-top: -80px;
-  width: 100%;
-  height: 100%;
-  display: none;
-  z-index: 120;
-}
-
-.overall ul {
+.submenu {
   position: absolute;
   min-width: 150px;
   text-align: left;
-  margin: 0;
-  margin-top: 5px;
-  right: 5px;
-  top: 70px;
+  right: -15%;
+  top: 100%;
   background: white;
   box-shadow: 4px 4px 12px 4px rgba(20%,20%,40%,0.2);
+
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+
+  -webkit-transition: opacity .4s, -webkit-transform .5s;
+  -moz-transition: opacity .4s, -moz-transform .5s;
+  -ms-transition: opacity .4s, -ms-transform .5s;
+  -o-transition: opacity .4s, -o-transform .5s;
+  transition: opacity .4s, transform .5s;
+}
+
+.rightHeaderInfo > li:hover .submenu, .rightHeaderIndo > li:focus .submenu {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
 }
 
 .mainPage {
   height: 90%;
 }
 
-.menuList {
+.tri_point > .submenu > .menuList {
   margin: 0;
   padding: 10px 20px;
   cursor: pointer;
 }
 
-.menuList:hover {
-  background: #CCC;
+.tri_point > .submenu > .menuList:hover {
+  background-color: #ddd;
 }
 
 .provisionArea {
   padding: 15px 20px;
   border-bottom: 1px solid #DDD;
 }
+
+.search_area {
+  width: 350px;
+  margin: 0px;
+  padding: 10px;
+}
+
+.search_area input {
+  width: 95%;
+  padding: 5px;
+  margin: 0px auto;
+  font-size: 20px;
+  border-radius: 100px;
+  border: solid 1px #000;
+}
+
+.question .submenu > li {
+  width: 400px;
+  margin: 0px;
+  padding: 10px 15px;
+  cursor: default;
+}
+
+.question .submenu .question_area_text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.question .submenu .question_area_email input {
+  font-size: 15px;
+  width: 95%;
+  padding: 10px;
+  margin: 0px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.question .submenu .question_area_content textarea {
+  font-size: 15px;
+  width: 95%;
+  padding: 5px 10px;
+  height: 150px;
+  margin: 0px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.question .submenu .question_area_submit button {
+  padding: 5px 20px;
+  margin: 0px;
+  border: 1px #999 solid;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.question .submenu .question_area_submit .question_cancel, .question .submenu .question_area_submit .question_send {
+  float: right;
+  margin: 0px 5px;
+}
+
+.question .submenu .question_area_submit .question_send {
+  color: #f22;
+  border-color: #f22;
+}
+
 .register {
   cursor: pointer;
 }
@@ -186,25 +263,12 @@ header div p:not(.userPicture) {
   border-top: 1px solid #AAA;
   color: red;
 }
+
 .login {
   background-color: transparent;
   border: 1px #000000 solid;
   border-radius: 100px;
   padding: 5px 10px;
-}
-
-#triangle {
-  padding: 0;
-  margin: 0;
-  margin-top: -15px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 15px 15px 15px;
-  border-color: transparent transparent #FFF transparent;
-  z-index: 99;
-  position: absolute;
 }
 
 ul {
@@ -233,13 +297,13 @@ ul {
   color: #fff;
 }
 /*div::scroolbars*/
-div::-webkit-scrollbar, body::-webkit-scrollbar {
+div::-webkit-scrollbar, body::-webkit-scrollbar, textarea::-webkit-scrollbar {
   width: 8px;
 }
-div::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
-  background: #cccccc; 
+div::-webkit-scrollbar-track, body::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
+  background: #cccccc;
 }
-div::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: gray;
 }

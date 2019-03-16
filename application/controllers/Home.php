@@ -3,12 +3,12 @@
 include_once __DIR__ . "/Authority.php";
 
 class Home extends Authority {
-  
+
   private $ProuctModel = null;
 
   public function __construct() {
     parent::__construct();
-    
+
     try {
       $this->ProductModel = Model::load("ProductModel");
     } catch(Exception $e) {
@@ -25,6 +25,7 @@ class Home extends Authority {
       print_r(json_decode($e->getMessage()));
       exit;
     }
+    
     $data = array();
     $productDepartment = $this->input->get('dep') ? $this->input->get('dep'): 1;
     $data["registeredInfo"] = $this->_verificationCheck($idx = $this->input->get('i'), $ver = $this->input->get('ver'));
@@ -56,20 +57,6 @@ class Home extends Authority {
     return $rtn;
   }
 
-  public function ajaxGetRegisterWindow() {
-    $rtn = $this->load->view('mainPage/registerWindow', array("baseUrl" => $this->_baseUrl), true);
-
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($rtn);
-  } 
-
-  public function ajaxGetLoginWindow() {
-    $rtn = $this->load->view('mainPage/loginWindow', array("baseUrl" => $this->_baseUrl), true);
-
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($rtn);
-  } 
-
   public function ajaxGetProductInfo() {
     try {
       $FreightModel = Model::load("FreightModel");
@@ -77,17 +64,16 @@ class Home extends Authority {
       print_r(json_decode($e->getMessage()));
       exit;
     }
+
     $pid = $this->input->post("Pidx");
     $data = array();
-    $data["baseUrl"] = $this->_baseUrl;
     $data["product"] = $this->ProductModel->getProductById($pid);
     $data["product"]['toShipPercent'] = floor(100*(($data["product"]['ship_Num'] - $data["product"]['to_Ship'])/$data["product"]['ship_Num']));
     $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
-    $data['freight'] = $FreightModel->getAllFreight();
-    $rtn = $this->load->view('mainPage/productDetailInfo', $data, true);
+    $data ['freight'] = $FreightModel->getAllFreight();
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($rtn);
+    echo json_encode($data);
   }
 
   public function ajaxGetDropProduct() {
@@ -97,13 +83,15 @@ class Home extends Authority {
       print_r(json_decode($e->getMessage()));
       exit;
     }
+
     $pid = $this->input->post("Pidx");
     $uid = $this->input->post("Uidx");
     $type = $this->input->post("type");
+
     $data = array();
-    $data["baseUrl"] = $this->_baseUrl;
     $data["product"] = $this->ProductModel->getProductById($pid);
     $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
+
     if ($storeProduct = $UserProductModel->getStoreProductByUidPidType($uid, $pid, $type)) {
       $data['numOfStoreProduct'] = $storeProduct['number'];
       $data['storeProductId'] = $storeProduct['idx'];
@@ -112,17 +100,7 @@ class Home extends Authority {
       $data["storeProductId"] = $UserProductModel->insert($uid, $pid, $type, $this->_formattedNow);
     }
 
-    if ($type == 1) {
-      $rtn = $this->load->view('mainPage/dropItemShoppingCar', $data, true);
-    } else if ($type == 2) {
-      $data['numOfWarehouseProduct'] = 0;
-      $rtn = $this->load->view('mainPage/dropItemWarehouse', $data, true);
-    } else if ($type == 3) {
-      $data['numOfWarehouseProduct'] = 0;
-      $rtn = $this->load->view('mainPage/dropItemPersonal', $data, true);
-    }
-
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($rtn);
+    echo json_encode($data);
   }
 }
