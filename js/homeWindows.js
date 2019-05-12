@@ -1,38 +1,49 @@
 $(document).on('click', "#dialogWindow_content .registerSubmit", function() {
-	let email = $("#registerEmail").val(),
-		reEmail = $("#registerReEmail").val(),
-		password = $("#registerPassword").val(),
-		userName = $("#registerUserName").val();
+	$(this).attr('disabled', true);
 
-	if (checkInputData(email, reEmail, password, userName)) {
-		$.post(baseUrl + "authority/ajaxRegister", {
-			email: email,
-			password: password,
-			userName: userName
-		}, function(rtn) {
-			if (rtn === 1) {
-				$("#registerNotification").html("此電子郵件已註冊過</br>請使用其他電子郵件註冊");
-			} else if (rtn === true) {
-				$("#registerInput").css("display", "none");
-				$("#verMailInfo").css("display", "block");
-			}
-		});
+	const userName = $('#registerUserName').val();
+	const email = $('#registerEmail').val();
+	const password = $('#registerPassword').val();
+	const rePassword = $('#registerRePassword').val();
+
+	if (checkValue(userName, email, password, rePassword)) {
+		$("#registerNotification").html("請稍後");
+		$.post(baseUrl + "home/ajaxRegister", {
+				email: email,
+				password: password,
+				userName: userName
+			}, function(rtn) {
+				if (rtn !== "") {
+					$("#registerNotification").html(rtn);
+				} else {
+					$("#registerNotification").html("驗證信已寄至您的信箱");
+					$('#register').unbind('click');
+					setTimeout(() => {
+						$('#dialogWindow__inside #close').trigger('click');
+					}, 1500);
+				}
+			})
+			.done(function(msg) {})
+			.fail(function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			});
+	} else {
+		$('#dialogWindow_content .registerSubmit').attr('disabled', false);
 	}
 });
 
 $(document).on('click', '#dialogWindow_content .loginSubmit', function() {
 	var email = $("#dialogWindow_content .loginEmail").val(),
 		password = $("#dialogWindow_content .loginPassword").val();
-	$.post(baseUrl + "Authority/ajaxLogin", {
+	$.post(baseUrl + "home/ajaxLogin", {
 		email: email,
 		password: password
 	}, function(rtn) {
-		if (rtn == 2) {
-			$("#dialogWindow_content .loginNotification").html("無此帳號，請註冊後再登入");
-		} else if (rtn == 3) {
-			$("#dialogWindow_content .loginNotification").html("密碼錯誤");
-		} else if (rtn == 4) {
-			$("#dialogWindow_content .loginNotification").html("請先驗證在登入");
+		console.log(rtn);
+		if (rtn !== '') {
+			$("#dialogWindow_content .loginNotification").html('<b style="color:#f22;">' + rtn + '</b>');
 		} else {
 			window.location.href = baseUrl;
 		}
@@ -59,24 +70,85 @@ $(document).on('click', '#dialogWindow_content .detailInfo__rightArrow', functio
 
 $(document).on('click', '#dialogWindow_content .loginToRegister', function() {
 	$("#dialogWindow_content div").remove();
-	openWindow('register');
+	openWindow('registerWindow__inside__content');
 });
 
 $(document).on('click', '#dialogWindow_content .ToSignIn', function() {
 	$("#dialogWindow_content div").remove();
-	openWindow('login');
+	openWindow('loginWindow__inside__content');
 });
 
-function checkInputData(email, reEmail, password, userName) {
-	var rtn = true,
-		notification = "";
+$(document).on('keyup', '#registerPassword', function() {
+	let password = $('#registerPassword').val();
 
-	if (email != reEmail) {
+	if (checkLen(password) && checkContent(password)) {
+		$("#registerNotification").html("");
+		$('#dialogWindow_content .registerSubmit').attr('disabled', false);
+	}
+});
+
+$(document).on('click', '#searchRandomMarket', () => {
+	$.post(baseUrl + "home/ajaxGetMarket", function(rtn) {
+		let randomMarket = $('#dialogWindow_content .randomMarketWindow .randomMarket');
+
+		randomMarket.data("market", rtn.market);
+		randomMarket.find('img').attr('src', USER_IMG + rtn.user_img);
+		randomMarket.find('.personal_market p:nth-child(2)').text(rtn.off_percent + '% off');
+		$('.searchMarket').hide();
+		$('.randomMarket').removeAttr('hidden');
+	});
+})
+
+$(document).on('click', '#shareMarketInfo', () => {
+	$("#dialogWindow_content div").remove();
+	openWindow('shareWindow');
+});
+
+function checkLen(password) {
+	let rtn = true;
+
+	if (password.length < 8 || password.length > 16) {
 		rtn = false;
-		notification = "電子郵件不同";
+		$("#registerNotification").html("密碼長度不對");
 	}
 
-	if (!rtn) $("#registerNotification").html(notification);
+	return rtn;
+}
+
+function checkContent(password) {
+	let rtn = true,
+		regExp = /^[\d	|a-zA-Z]+$/;
+
+	if (!regExp.test(password)) {
+		rtn = false;
+		$("#registerNotification").html("密碼包含非英數字元");
+	}
+
+	return rtn;
+}
+
+function checkValue(userName, email, password, rePassword) {
+	let rtn = true;
+
+	if (userName.length == 0) {
+		rtn = false;
+		$("#registerNotification").html("請讓我們知道怎麼稱呼您");
+	} else {
+		if (email.length == 0) {
+			rtn = false;
+			$("#registerNotification").html("請輸入您的Email");
+		} else {
+			if (password.length == 0) {
+				rtn = false;
+				$("#registerNotification").html("請輸入密碼");
+			} else {
+				if (password != rePassword) {
+					rtn = false;
+					$("#registerNotification").html("確認密碼不符");
+				}
+			}
+		}
+	}
 
 	return rtn;
 }

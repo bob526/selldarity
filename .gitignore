@@ -1,3 +1,5 @@
 .htaccess
 application/config/config.php
-models/config.php
+application/config/Authority/
+application/config/development/
+application/controllers/Test.php

@@ -24,6 +24,7 @@ time, mark, audio, video {
 ::-moz-selection {
   background: transparent;
 }
+
 input, button, a , select, textarea {
   outline: none;
   text-decoration: none;

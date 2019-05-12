@@ -1,88 +1,37 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-include_once __DIR__ . "/Authority.php";
-
-class Home extends Authority {
-
-  private $ProuctModel = null;
-
+class Home extends SELLDARITY_Controller {
   public function __construct() {
     parent::__construct();
-
-    try {
-      $this->ProductModel = Model::load("ProductModel");
-    } catch(Exception $e) {
-      print_r(json_decode($e->getMessage()));
-      exit;
-    }
   }
 
-  public function mainPage() {
-    try {
-      $DepartmentsModel = Model::load("DepartmentsModel");
-      $UserProductModel = Model::load("UserProductModel");
-    } catch(Exception $e) {
-      print_r(json_decode($e->getMessage()));
-      exit;
-    }
-    
+  public function mainPage($productDepartment = 1) {
     $data = array();
-    $productDepartment = $this->input->get('dep') ? $this->input->get('dep'): 1;
-    $data["registeredInfo"] = $this->_verificationCheck($idx = $this->input->get('i'), $ver = $this->input->get('ver'));
+    $this->load->model('selldarity/UserProductModel');
+    $this->load->model('PSW/ProductModel');
+    $this->load->model('PSW/DepartmentsModel');
+    $this->load->model('PSW/SaleModel');
+
+    $data["registeredInfo"] = $this->_verificationCheck($user_id = $this->input->get('i'), $verificationCode = $this->input->get('ver'));
 
     $data = $this->_getLayoutData($data);
-    $data["allDepartments"] = $this->_resetDepartments($DepartmentsModel->getAllDepartments(), $productDepartment);
+    $data['productDepartment'] = $productDepartment;
+    $departments = $this->DepartmentsModel->getAllDepartments();
+    $data["allDepartments"] = array_combine(array_column($departments, 'idx'), $departments);
 
-    $data["products"] = ($productDepartment == 1) ? $this->ProductModel->getPopularProduct() : $this->ProductModel->getProductsByDepartment($productDepartment);
+    $data["products"] = $this->_calOffItem($this->ProductModel->getProductsByDepartment($productDepartment), $this->SaleModel);
 
-    $dropItems = $this->_resetDropItem($UserProductModel->getProductsByUidx($data['uidx']));
-    $data['shoppingCar'] = $dropItems['shoppingCar'];
-    $data['warehouse'] = $dropItems['warehouse'];
-    $data['personal'] = $dropItems['personal'];
+    $data = array_merge(
+      $data,
+      $this->_groupByValue($this->_getUserProducts($this->ProductModel, $this->UserProductModel), 'category')
+    );
 
     $this->load->view('mainPage/home', $data);
   }
 
-  private function _resetDepartments($departments, $productDepartment) {
-    $rtn = array("selectedItem" => array(), "departments" => array());
-
-    foreach ($departments as $data) {
-      if ($data['idx'] == $productDepartment) {
-        $rtn['selectedItem'] = $data;
-      } else {
-        $rtn['departments'][] = $data;
-      }
-    }
-
-    return $rtn;
-  }
-
-  public function ajaxGetProductInfo() {
-    try {
-      $FreightModel = Model::load("FreightModel");
-    } catch(Exception $e) {
-      print_r(json_decode($e->getMessage()));
-      exit;
-    }
-
-    $pid = $this->input->post("Pidx");
-    $data = array();
-    $data["product"] = $this->ProductModel->getProductById($pid);
-    $data["product"]['toShipPercent'] = floor(100*(($data["product"]['ship_Num'] - $data["product"]['to_Ship'])/$data["product"]['ship_Num']));
-    $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
-    $data ['freight'] = $FreightModel->getAllFreight();
-
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($data);
-  }
-
   public function ajaxGetDropProduct() {
-    try {
-      $UserProductModel = Model::load("UserProductModel");
-    } catch(Exception $e) {
-      print_r(json_decode($e->getMessage()));
-      exit;
-    }
+    $this->load->model('PSW/ProductModel');
+    $this->load->model('PSW/UserProductModel');
 
     $pid = $this->input->post("Pidx");
     $uid = $this->input->post("Uidx");
@@ -90,17 +39,129 @@ class Home extends Authority {
 
     $data = array();
     $data["product"] = $this->ProductModel->getProductById($pid);
-    $data["product"]['off_Price'] = floor($data["product"]['ori_Price']*((100-$data["product"]['off_Percent'])/100));
+    $data["product"]['off_Price'] = $this->_getOffPrice($data['product']);
 
-    if ($storeProduct = $UserProductModel->getStoreProductByUidPidType($uid, $pid, $type)) {
+    if ($storeProduct = $this->UserProductModel->getStoreProductByUidPidType($uid, $pid, $type)) {
       $data['numOfStoreProduct'] = $storeProduct['number'];
       $data['storeProductId'] = $storeProduct['idx'];
     } else {
       $data['numOfStoreProduct'] = 0;
-      $data["storeProductId"] = $UserProductModel->insert($uid, $pid, $type, $this->_formattedNow);
+      $data["storeProductId"] = $this->UserProductModel->insert($uid, $pid, $type, $this->_formattedNow);
     }
 
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($data);
+    $this->_ajaxReturn($data);
+  }
+
+  public function ajaxLogin() {
+    $rtn = '';
+    $postData = array(
+      'email' => $this->input->post('email'),
+      'password' => $this->input->post('password')
+    );
+    $this->load->library('Authority', array(), 'auth');
+    $authRtn = $this->auth->authAPI('login', $postData);
+    if ($userData = $authRtn['result']) {
+      $this->session->set_userdata('user', array(
+        "user_id" => $userData['user_id'],
+        "name" => $userData['name'],
+        "level" => $userData['level'],
+        "email" => $userData['email'],
+        "phone" => $userData['phone'],
+        "gender" => $userData['gender'],
+        "birthday" => $userData['birthday'],
+        "picture" => $userData['picture_url'],
+        "recommend_code" => $userData['recommend_code'],
+      ));
+      $this->_changeDistictIdToUserId($userData['user_id']);
+    } else {
+      $rtn = $authRtn['message'];
+    }
+    $this->_ajaxReturn($rtn);
+  }
+
+  public function ajaxRegister() {
+    $email = $this->input->post('email');
+    $userName = $this->input->post('userName');
+    $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+    $postData = array(
+      'email' => $email,
+      'userName' => $userName,
+      'password' => $password
+    );
+    $this->load->library('Authority', array(), 'auth');
+    $authRtn = $this->auth->authAPI('register', $postData);
+    $this->_ajaxReturn($authRtn);
+  }
+
+  public function logout() {
+    $this->session->unset_userdata('user');
+    header("Location:{$this->_baseUrl}");
+    exit;
+  }
+
+  private function _verificationCheck($user_id, $verificationCode) {
+    $rtn = '';
+    $data = array(
+      'baseUrl' => $this->_baseUrl
+    );
+
+    if ($user_id && $verificationCode) {
+      $this->load->library('Authority', array(), 'auth');
+      $postData = array(
+        'user_id' => $user_id,
+        'verificationCode' => $verificationCode
+      );
+      $data['verificationRtn'] = $this->auth->authAPI('verificationCheck', $postData);
+      if ($data['verificationRtn'] == '') {
+        $this->load->model('selldarity/MyMarketModel');
+        $this->load->model('selldarity/WalletModel');
+        $this->MyMarketModel->insert($user_id, $this->_formattedNow);
+        $this->WalletModel->insert($user_id, $this->_formattedNow);
+        $this->_changeDistictIdToUserId($user_id);
+      }
+      $rtn = $this->load->view('mainPage/registeredInfo', $data, true);
+    }
+
+    return $rtn;
+  }
+
+  private function _changeDistictIdToUserId($user_id) {
+      $this->load->model('selldarity/UserProductModel');
+      $distinct_id = $this->_userInfo['stranger_id'];
+      $this->UserProductModel->updateDistictIdToUserId($distinct_id, $user_id, $this->_formattedNow);
+      //TODO remove duplicate rows.
+  }
+
+  public function ajaxStoreProduct() {
+    $this->load->model('selldarity/UserProductModel');
+    $pid = $this->input->post("pid");
+    $distinct_id = $this->input->post("distinct_id");
+    $category_id = $this->input->post("category_id");
+    $storeProductId = $this->UserProductModel->insert($distinct_id, $pid, $category_id, $this->_formattedNow);
+
+    $this->_ajaxReturn($storeProductId);
+  }
+
+  public function ajaxSetStoreProductNum() {
+    $this->load->model('selldarity/UserProductModel');
+    $storeProductData = json_decode($this->input->post('data'), true);
+    $storeProductId = array_column($storeProductData, 'idx');
+    $storeProductNum = array_column($storeProductData, 'number');
+
+    $this->_ajaxReturn(true);
+
+    $this->UserProductModel->batchUpdateNumById($storeProductNum, $storeProductId, $this->_formattedNow);
+    exit;
+  }
+
+  public function ajaxGetMarket() {
+    // TODO: market selection by random.
+    $default = [
+      'user_img' => 'user.svg',
+      'off_percent' => 30,
+      'market' => $this->_base64url_encode(3),
+    ];
+    $rtn = $default;
+    $this->_ajaxReturn($rtn);
   }
 }

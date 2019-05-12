@@ -49,7 +49,7 @@
   align-items: center;
   margin: 0px auto;
   padding: 8px 20px;
-  font-size: 14px;
+  font-size: 15px;
   color: #fff;
   background: #f22;
   border: solid #f22 1px;
@@ -91,13 +91,13 @@
   padding: 20px 15px;
 }
 
-.shoppingCar_row, .warehouse_row, .personal_sale_row {
+.shoppingCar_row, .warehouse_row, .myMarket_row {
   box-shadow: 0px 0px 10px 0px rgba(20%,20%,40%,0.2);
   padding: 15px 20px;
   margin-bottom: 10px;
 }
 
-.shoppingCar_column, .warehouse_column, .personal_sale_column {
+.shoppingCar_column, .warehouse_column, .myMarket_column {
   display: -webkit-flex;
   display:         flex;
   -webkit-align-items: center;
@@ -105,11 +105,11 @@
   justify-content: center;
 }
 
-.shoppingCar_column img, .warehouse_column img, .personal_sale_column img {
+.shoppingCar_column img, .warehouse_column img, .myMarket_column img {
   width: 50%;
 }
 
-.shoppingCar_column b, .warehouse_column b, .personal_sale_column b {
+.shoppingCar_column b, .warehouse_column b, .myMarket_column b {
   color: #f22;
 }
 
@@ -117,23 +117,22 @@
   cursor: pointer;
 }
 
-.products_manage_foot_contain {
-  padding: 10px 20px;
-  box-shadow: -5px -8px 6px -6px rgba(20%,20%,40%,0.2);
-  display: -webkit-flex;
-  display:         flex;
-  -webkit-align-items: center;
-  align-items: center;
+.delete_item:hover {
+  color: #00BBFF;
 }
 
-.products_manage_foot_contain *{
-  display: inline-block; 
-  margin: 0px auto;
+.products_manage_foot_contain {
+  padding: 7px 20px;
+  box-shadow: -5px -8px 6px -6px rgba(20%,20%,40%,0.2);
+}
+
+.products_manage_foot_contain * {
+  display: inline-block;
 }
 
 .products_manage_foot_contain p {
   color: #999;
-  padding: 10px;
+  padding: 8px 10px;
 }
 
 .products_manage_foot_contain p b {
@@ -143,8 +142,13 @@
 .product_type {
   padding: 10px;
   font-size: 15px;
-  cursor: pointer;
   margin: 0px 10px;
+  display: block;
+  color: #999;
+}
+
+.product_type:hover {
+  color:  #666;
 }
 
 .product_type_focus {
@@ -192,11 +196,11 @@
   font-weight: bolder;
 }
 
-.warehouse_label:first-child, .personal_sale_label:first-child{
+.warehouse_label:first-child, .myMarket_label:first-child{
   margin-left: 40px;
 }
 
-.warehouse_label, .personal_sale_label {
+.warehouse_label, .myMarket_label {
   display: inline-block;
   box-shadow: 0 6px 0 #fff,
               0 -1px 6px rgba(20%,20%,40%,0.2) inset,
@@ -209,10 +213,10 @@
   background: #fff;
   font-weight: bolder;
   background: #eee;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
-.warehouse_label p, .personal_sale_label p {
+.warehouse_label p, .myMarket_label p {
   display: -webkit-flex;
   display:         flex;
   -webkit-align-items: center;
@@ -220,12 +224,12 @@
   justify-content: center;
 }
 
-.warehouse_label img, .personal_sale_label img {
+.warehouse_label img, .myMarket_label img {
   width: 20px;
   padding: 0 10px;
 }
 
-#warehouse_label_selected, #personal_sale_label_selected {
+#warehouse_label_selected, #myMarket_label_selected {
   box-shadow: 0 6px 0 #fff,
               0 1px 6px rgba(20%,20%,40%,0.2);
   margin-bottom: -3px;
@@ -314,4 +318,33 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.item_show {
+  cursor: pointer;
+}
+
+.warehouse_purchase,
+.myMarket_state {
+  display: none;
+}
+
+.shoppingCar_type, .warehouse_store {
+  display: block;
+}
+
+.shoppingCar_foot > div {
+  margin: 0px 10px;
+}
+
+.prodcut_manage_detailInfo_description {
+  width: 100%;
+  height: 300px;
+  padding: 5px 10px;
+  color: #666;
+  word-wrap: break-word;
+}
+
+.prodcut_manage_detailInfo_description > p {
+  padding-bottom: 20px;
 }

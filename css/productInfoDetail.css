@@ -1,0 +1,231 @@
+.productDetailInfo {
+  width: 1000px;
+  background: #fff;
+  display: none;
+}
+
+.detailInfo__left__mainImg {
+  border-right: solid 1px #ccc;
+}
+
+.detailInfo__left__mainImg, .detailInfo__left__mainImg img {
+  width: 100%;
+  height: 300px;
+}
+
+.detailInfo__left__otherImg {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.detailInfo__left__otherImg div {
+  margin: 0 auto;
+}
+
+.otherImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.detailInfo__left__shareItem {
+  padding: 15px 20px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.detailInfo__left__shareItem p {
+  display: inline-block;
+  padding-right: 5px;
+  color: #aaa;
+}
+
+.detailInfo__left__shareItem img {
+  width: 30px;
+  height: 30px;
+  border-radius:99em;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.detailInfo__left__ship {
+  padding: 0px 20px;
+}
+
+.detailInfo__left__ship p {
+  color: #aaa;
+}
+
+.detailInfo__left__ship p b {
+  padding-left: 15px;
+  color: #000;
+}
+
+.detailInfo__productInfo {
+  padding: 10px 20px;
+  overflow-y: auto;
+}
+
+.detailInfo__productInfo > p {
+  border-bottom: 1px #aaa solid;
+  padding: 5px 10px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.detailInfo__productInfo > p img {
+  width: 30px;
+  padding-right: 10px;
+}
+
+.detailInfo__productInfo__title {
+  padding: 15px 10px;
+  border-bottom: 1px #aaa solid;
+}
+
+.detailInfo__productInfo__title__left p:first-child {
+  font-size: 25px;
+  font-weight: bolder;
+  padding-bottom: 15px;
+}
+
+.detailInfo__productInfo__title__left p:nth-child(2), .detailInfo__productInfo__title__right {
+  color: #f22;
+  font-size: 25px;
+}
+
+.detailInfo__discount b {
+  padding-left: 20px;
+}
+
+.detailInfo__discount span {
+  font-size: 10px;
+  padding-left: 40px;
+  color: #bbb;
+}
+
+.detailInfo__leftArrow {
+  background: url("images/arrow-white-point-to-left.svg") no-repeat rgba(0, 0, 0, 0.2);
+  background-position: center;
+  background-size: 30px 25px;
+  cursor: pointer;
+}
+
+#detailInfo__leftArrow {
+  margin-left: 0px;
+}
+
+.detailInfo__rightArrow {
+  background: url("images/arrow-white-point-to-left.svg") no-repeat rgba(0, 0, 0, 0.2);
+  background-position: center;
+  background-size: 30px 25px;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);             /* IE 9 */
+  -webkit-transform: rotate(180deg);      /* Safari and Chrome */
+  -o-transform: rotate(180deg);              /* Opera */
+  -moz-transform: rotate(180deg);         /* Firefox */
+  cursor: pointer;
+}
+
+#detailInfo__rightArrow {
+  margin-right: 0px;
+}
+
+.detailInfo__left__ship_range {
+  width: 100%;
+  background: #ddd;
+  border-radius: 50px;
+  margin: 10px 0;
+}
+
+
+.detailInfo__left__ship_range div {
+  height: 10px;
+  border-radius: 50px;
+}
+
+.detailInfo__productInfo__title__right {
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  margin: auto 0px;
+}
+
+.detailInfo__wareHouse b {
+  padding: 0px 10px;
+}
+
+.detailInfo__description {
+  width: 100%;
+  height: 170px;
+  padding: 5px 10px;
+  color: #666;
+  word-wrap: break-word;
+}
+
+.detailInfo__description > p {
+  padding-bottom: 20px;
+}
+
+.detailInfo__counter {
+  padding:10px;
+  border-bottom:2px #aaa solid;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.detailInfo__button__area {
+  padding: 5px 15px;
+  box-shadow: 0 -8px 6px -6px rgba(20%,20%,40%,0.2);
+}
+
+.detailInfo__button__area div {
+  display: inline-block;
+}
+
+.detailInfo__button__area p {
+  text-align: center;
+  color: #999;
+  font-size: 15px;
+  padding: 8px 0px;
+}
+
+.detailInfo__button button {
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0px auto;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: solid #f22 1px;
+  color: #f22;
+  background: rgba(100%, 90%, 90%, 0.5);
+}
+
+.detailInfo__shopping__button button {
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0px auto;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #fff;
+  background: #f22;
+  border: solid #f22 1px;
+}
+
+.detailInfo__button img, .detailInfo__shopping__button img {
+  width: 20px;
+  padding-right: 10px;
+}

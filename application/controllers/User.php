@@ -10,29 +10,17 @@ define("WAREHOUSE", 5);
 define("NOTICE_OVERVIEW", 6);
 define("WALLET_INFO", 7);
 
-class User extends Authority {
-  
-  private $UserModel = null;
-
+class User extends SELLDARITY_Controller {
   public function __construct() {
     parent::__construct();
-    
-    $this->auth();
-
-    try {
-      $this->UserModel = Model::load("UserModel");
-    } catch(Exception $e) {
-      print_r(json_decode($e->getMessage()));
-      exit;
-    }
   }
 
   public function userInfo($userInfoType) {
     $data = array();
     $data = $this->_getLayoutData($data);
-    
+
     switch ($userInfoType) {
-    case USER_ACCOUNT :
+      case USER_ACCOUNT :
       $data['email'] = $this->_userInfo['email'];
       $data['phone'] = $this->_userInfo['phone'];
       $data['marketName'] = $this->_userInfo['marketName'];
@@ -40,19 +28,19 @@ class User extends Authority {
       $data['birthday'] = $this->_userInfo['birthday'];
       $data['userInfoType'] = $this->load->view('user/userInfo_account', $data, true);
       break;
-    case SALE_RECORD :
+      case SALE_RECORD :
       break;
-    case TRANSACTION :
+      case TRANSACTION :
       $data['userInfoType'] = $this->load->view('user/userInfo_transaction', $data, true);
       break;
-    case PERSONAL_MARKET :
+      case PERSONAL_MARKET :
       $data['userInfoType'] = $this->load->view('user/userInfo_personal_market', $data, true);
       break;
-    case WAREHOUSE :
+      case WAREHOUSE :
       break;
-    case NOTICE_OVERVIEW :
+      case NOTICE_OVERVIEW :
       break;
-    case WALLET_INFO :
+      case WALLET_INFO :
       break;
     }
 

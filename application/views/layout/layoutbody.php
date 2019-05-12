@@ -5,10 +5,10 @@
     </div>
     <div class="rightHeader pure-u-3-4">
       <div class="leftHeaderInfo" id="leftHeaderInfo">
-        <?php if ($uidx) : ?>
-          <p class="userPicture"><img src="<?=$baseUrl?>userImg/<?php echo $picture ? $picture : "user.svg"; ?>"/></p>
+        <?php if ($user_id) : ?>
+          <p class="userPicture"><img src="<?php echo USER_IMG; ?><?php echo $picture ? $picture : "user.svg"; ?>"/></p>
           <p class="userName" id="userName"><?=$userName?></p>
-          <p class="level">LV.<?=$LV?></p>
+          <p class="level">LV.<?=$level?></p>
         <?php else : ?>
           <p class="register" id="register">註冊</p>
           <button class="login" id="login">登入</button>
@@ -51,7 +51,7 @@
         <li class="menuList" id="newProductSearch">商品推薦</li>
         <li class="menuList" id="returnProduct">取消訂貨&退貨</li>
         <li class="menuList">關於團隊拍賣</li>
-        <?php if ($uidx) : ?>
+        <?php if ($user_id) : ?>
           <li id="logout" class="menuList logout">登出</li>
         <?php endif; ?>
       </ul>
@@ -65,7 +65,7 @@
     <div id="dialogWindow__inside" class="dialogWindow__inside">
       <span class="close" id="close">&times;</span>
       <div class="dialogWindow_content" id="dialogWindow_content">
-        <?php if ($registeredInfo): ?>
+        <?php if (isset($registeredInfo )): ?>
           <?=$registeredInfo?>
         <?php endif; ?>
       </div>
