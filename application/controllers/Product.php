@@ -81,7 +81,6 @@ class Product extends SELLDARITY_Controller {
 
   public function ajaxDeleteStoreProduct() {
     $this->_ajaxReturn(true);
-    exit;
     $this->load->model('selldarity/UserProductModel');
     $idx = $this->input->post('idx');
     $rtn = $this->UserProductModel->deleteStoreProductByIdx($idx);

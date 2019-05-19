@@ -282,8 +282,8 @@
                   <p class="drop_item_highligh drop_warehouse_item drop_personalStore_item">我的庫存: <b>0</b> 個</p>
                 </div>
               </div>
-              <?php if (isset($personal)): ?>
-                <?php foreach ($personal as $product) :?>
+              <?php if (isset($myMarket)): ?>
+                <?php foreach ($myMarket as $product) :?>
                   <div id="dropItem_<?=$product['idx']?>" class="pure-g drop_item" data-productid="<?=$product['idx']?>">
                     <span class="drop_item_close" data-storeproduct="<?=$product['storeProductId']?>">&times;</span>
                     <img class="pure-u-1-3" src="<?php echo PRODUCT_IMG;?><?=$product['idx']?>/1"/>
@@ -458,10 +458,12 @@
     </div>
     <div class="pure-g detailInfo__button__area">
       <?php if ($user_id): ?>
-        <div class="pure-u-1-3 detailInfo__button"><button><img src="<?=$baseUrl?>/css/images/warehouse_red.svg" />加入虛擬倉庫</button></div>
-        <div class="pure-u-1-3 detailInfo__button"><button><img src="<?=$baseUrl?>/css/images/online_shop_red.svg" />加入我的賣場</button></div>
+        <div class="pure-u-1-3 detailInfo__button"><button onclick="dragToStore(2)"><img src="<?=$baseUrl?>/css/images/warehouse_red.svg" />加入虛擬倉庫</button></div>
+        <div class="pure-u-1-3 detailInfo__button"><button onclick="dragToStore(3)"><img src="<?=$baseUrl?>/css/images/online_shop_red.svg" />加入我的賣場</button></div>
+      <?php else: ?>
+        <div class="pure-u-2-3"></div>
       <?php endif; ?>
-      <div class="pure-u-1-3 detailInfo__shopping__button"><button><img src="<?=$baseUrl?>/css/images/shopping_cart_white.svg" />加入購物車</button></div>
+      <div class="pure-u-1-3 detailInfo__shopping__button"><button onclick="dragToStore(1)"><img src="<?=$baseUrl?>/css/images/shopping_cart_white.svg" />加入購物車</button></div>
     </div>
   </div>
 </div>

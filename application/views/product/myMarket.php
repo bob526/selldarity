@@ -28,19 +28,45 @@
         </div>
 
         <?php foreach ($myMarket['products'] as $item) : ?>
-          <div class="pure-g myMarket_row">
+          <div class="pure-g myMarket_row" data-pid="<?=$item['idx']?>">
             <div class="pure-u-2-24 myMarket_column checkBox_container">
               <input type="checkbox" class="myMarket_checkProductItem" checked>
               <span class="checkmark"></span>
             </div>
-            <div class="pure-u-4-24 myMarket_column">
+            <div class="pure-u-4-24 myMarket_column item_show">
               <img src="<?php echo PRODUCT_IMG;?><?=$item['idx']?>/1"/>
             </div>
-            <div class="pure-u-5-24 myMarket_column"><?=$item['name']?></div>
+            <div class="pure-u-5-24 myMarket_column item_name"><?=$item['name']?></div>
             <div class="pure-u-5-24"></div>
             <div class="pure-u-3-24 myMarket_column">10</div>
             <div class="pure-u-3-24 myMarket_column">$<?=$item['ori_price']?></div>
             <div class="pure-u-2-24 myMarket_column delete_item" data-storeproduct="<?=$item['storeProductId']?>">刪除</div>
+            <div class="otherInfo" style="display:none;">
+							<div class="item_description">
+								<?=$item['description']?>
+              </div>
+							<div class="item_storageCost">
+								<?=$item['storage_cost']?>
+							</div>
+							<div class="item_highestDiscount">
+								<?=$item['highest_discount']?>
+							</div>
+              <div class="item_toShip">
+                <?=$item['to_ship']?>
+              </div>
+              <div class="item_toShipPencent">
+                <?=$item['toShipPercent']?>
+              </div>
+              <div class="item_oriPrice">
+                <?=$item['ori_price']?>
+              </div>
+              <div class="item_offPrice">
+                <?=$item['off_price']?>
+              </div>
+              <div class="item_off">
+                <?=$item['off_percent']?>
+              </div>
+            </div>
           </div>
         <?php endforeach; ?>
       </div>

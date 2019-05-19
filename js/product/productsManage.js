@@ -13,9 +13,7 @@ $(".delete_item").click(function() {
 	$(this).parent().remove();
 	$.post(bridge.baseUrl + "product/ajaxDeleteStoreProduct", {
 		idx: storeProductIdx
-	}, (rtn) => {
-		calcAmount();
-	});
+	}, calcAmount());
 });
 
 $(document).on('click', '.counter__button', function counter() {
@@ -31,32 +29,32 @@ $(document).on('click', '.counter__button', function counter() {
 		if (insertNum < 0) insertNum = 0;
 	}
 
+	$(this).parent().parent().parent().find('.item_total b').html(insertNum * price);
   counterNum.html(insertNum)
   .promise()
-  .done(() => {
-		calcAmount();
-  });
+  .done(calcAmount());
 });
 
 $(".item_show").click(function() {
-	let windowDom = $(".productDetailInfo").clone(),
-	Pidx = $(this).parent().data("pid");
+	let windowDom = $(".productDetailInfo").clone();
+	let parentNode = $(this).parent();
+	let Pidx = parentNode.data("pid");
 
 	windowDom.find(".detailInfo__left__mainImg .mainImg").attr('src', bridge.PRODUCT_IMG + Pidx + "/1");
 	windowDom.find(".detailInfo__left__otherImg .otherImg").each(function(index) {
 		$(this).find("img").attr('src', bridge.PRODUCT_IMG + Pidx + "/" + (index + 1));
 	});
-	windowDom.find(".detailInfo__left__ship > p > b").append($(this).parent().find(".otherInfo .item_toShip").html());
-	windowDom.find(".detailInfo__left__ship_range > div").css("width", parseInt($(this).parent().find(".otherInfo .item_toShipPencent").html(), 10) + "%");
-	windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(1)").append($(this).parent().find(".item_name").html());
-	windowDom.find(".detailInfo__discount > b").append($(this).parent().find(".otherInfo .item_highestDiscount").html());
-	windowDom.find(".prodcut_manage_detailInfo_description").append($(this).parent().find(".otherInfo .item_description").html());
+	windowDom.find(".detailInfo__left__ship > p > b").append(parentNode.find(".otherInfo .item_toShip").html());
+	windowDom.find(".detailInfo__left__ship_range > div").css("width", parseInt(parentNode.find(".otherInfo .item_toShipPencent").html(), 10) + "%");
+	windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(1)").append(parentNode.find(".item_name").html());
+	windowDom.find(".detailInfo__discount > b").append(parentNode.find(".otherInfo .item_highestDiscount").html());
+	windowDom.find(".prodcut_manage_detailInfo_description").append(parentNode.find(".otherInfo .item_description").html());
 	if (bridge.uid !== "") {
-		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > del").append($(this).parent().find(".item_price del").html());
-		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > b").append($(this).parent().find(".item_price b").html());
-		windowDom.find(".detailInfo__productInfo__title__right > b").append($(this).parent().find(".item_off b").html());
+		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > del").append(parentNode.find(".otherInfo .item_oriPrice").html());
+		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > b").append(parentNode.find(".otherInfo .item_offPrice").html());
+		windowDom.find(".detailInfo__productInfo__title__right > b").append(parentNode.find(".otherInfo .item_off").html());
 	} else {
-		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > b").append($(this).parent().find(".item_price b").html());
+		windowDom.find(".detailInfo__productInfo__title__left > p:nth-child(2) > b").append(parentNode.find(".otherInfo .item_oriPrice").html());
 	}
 	windowDom.css("display", "block");
 	$("#dialogWindow_content").append(windowDom);

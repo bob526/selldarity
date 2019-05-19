@@ -52,6 +52,15 @@
               <div class="item_toShipPencent">
                 <?=$item['toShipPercent']?>
               </div>
+              <div class="item_oriPrice">
+                <?=$item['ori_price']?>
+              </div>
+              <div class="item_offPrice">
+                <?=$item['off_price']?>
+              </div>
+              <div class="item_off">
+                <?=$item['off_percent']?>
+              </div>
             </div>
           </div>
         <?php endforeach; ?>
@@ -92,6 +101,9 @@
               </div>
               <div class="item_toShipPencent">
                 <?=$item['toShipPercent']?>
+              </div>
+              <div class="item_oriPrice">
+                <?=$item['ori_price']?>
               </div>
             </div>
           </div>

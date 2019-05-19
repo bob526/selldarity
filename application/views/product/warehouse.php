@@ -60,15 +60,15 @@
           <div class="pure-u-2-24 warehouse_column">操作</div>
         </div>
         <?php foreach ($warehouse['products'] as $item): ?>
-          <div class="pure-g warehouse_row">
+          <div class="pure-g warehouse_row" data-pid="<?=$item['idx']?>">
             <div class="pure-u-2-24 warehouse_column checkBox_container">
               <input type="checkbox" class="warehouse_purchase_checkProductItem" checked>
               <span class="checkmark"></span>
             </div>
-            <div class="pure-u-4-24 warehouse_column">
+            <div class="pure-u-4-24 warehouse_column item_show">
               <img src="<?php echo PRODUCT_IMG;?><?=$item['idx']?>/1"/>
             </div>
-            <div class="pure-u-5-24 warehouse_column"><?=$item['name']?></div>
+            <div class="pure-u-5-24 warehouse_column item_name"><?=$item['name']?></div>
             <div class="pure-u-4-24 warehouse_column item_price">$<b><?=$item['off_price']?></b></div>
             <div class="pure-u-5-24 warehouse_column">
               <div class="counter">
@@ -79,6 +79,32 @@
             </div>
             <div class="pure-u-2-24 warehouse_column">退貨</div>
             <div class="pure-u-2-24 warehouse_column delete_item" data-storeproduct="<?=$item['storeProductId']?>">刪除</div>
+            <div class="otherInfo" style="display:none;">
+              <div class="item_description">
+                <?=$item['description']?>
+              </div>
+              <div class="item_storageCost">
+                <?=$item['storage_cost']?>
+              </div>
+              <div class="item_highestDiscount">
+                <?=$item['highest_discount']?>
+              </div>
+              <div class="item_toShip">
+                <?=$item['to_ship']?>
+              </div>
+              <div class="item_toShipPencent">
+                <?=$item['toShipPercent']?>
+              </div>
+              <div class="item_oriPrice">
+                <?=$item['ori_price']?>
+              </div>
+              <div class="item_offPrice">
+                <?=$item['off_price']?>
+              </div>
+              <div class="item_off">
+                <?=$item['off_percent']?>
+              </div>
+            </div>
           </div>
         <?php endforeach ?>
       </div>

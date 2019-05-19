@@ -299,7 +299,7 @@ ul {
 }
 /*div::scroolbars*/
 div::-webkit-scrollbar, body::-webkit-scrollbar, textarea::-webkit-scrollbar {
-  width: 8px;
+  width: 0px;
 }
 div::-webkit-scrollbar-track, body::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
   background: #cccccc;
