@@ -5,6 +5,11 @@
   <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/jquery-ui.css?v=<?=time();?>">
   <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/home.css?v=<?=time();?>">
   <link rel="stylesheet" type="text/css" href="<?=$baseUrl?>css/productInfoDetail.css?v=<?=time();?>">
+  <meta property="og:url"           content="172.104.92.126/way/selldarity/" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Selldarity" />
+  <meta property="og:description"   content="Selldarity is a project that let everybody open his or her business easily." />
+  <meta property="og:image"         content="http://invoid.csie.io/way/selldarity/css/images/Selldarity_icon_chinese.svg" />
 </head>
 <body>
   <div class="showRandomMarketWindow">
@@ -401,7 +406,7 @@
     </div>
     <div class="detailInfo__left__shareItem">
       <p>分享至</p>
-      <img src="<?=$baseUrl?>css/images/shareItem/facebook.svg" />
+      <img class="fb-share" src="<?=$baseUrl?>css/images/shareItem/facebook.svg" />
       <img src="<?=$baseUrl?>css/images/shareItem/google_plus.svg" />
       <img src="<?=$baseUrl?>css/images/shareItem/instagram.svg" />
       <img src="<?=$baseUrl?>css/images/shareItem/line.svg" />
@@ -496,7 +501,7 @@
     <p>分享並獲得優惠</p>
   </div>
   <div class="shareWindow_shareItem">
-    <img src="<?=$baseUrl?>css/images/shareItem/facebook.svg" />
+    <img class="fb-share" src="<?=$baseUrl?>css/images/shareItem/facebook.svg" />
     <img src="<?=$baseUrl?>css/images/shareItem/google_plus.svg" />
     <img src="<?=$baseUrl?>css/images/shareItem/instagram.svg" />
     <img src="<?=$baseUrl?>css/images/shareItem/line.svg" />
@@ -517,3 +522,14 @@ USER_IMG = "<?php echo USER_IMG; ?>";
 uid = "<?=$user_id?>";
 distinctId = "<?php echo $user_id ? $user_id : $stranger_id;?>";
 </script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : 'Selldarity app id, must change it',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.3'
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.3"></script>

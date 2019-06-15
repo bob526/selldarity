@@ -289,6 +289,20 @@ $(document).on('click', '.showRandomMarketWindow', () => {
 	openWindow('randomMarketWindow');
 });
 
+
+$(document).on("click", ".fb-share", () => {
+	FB.ui({
+		method: 'share',
+		href: '172.104.92.126/way/selldarity/'
+	}, function(response){
+		if (response && !response.error_message) {
+			console.log("Posting completed.")
+		} else {
+			console.log("Error while posting.")
+		}	
+	});
+});
+
 function setDropItem(category_id, product) {
 	return new Promise((resolve) => {
 		let droppedItem = $("." + $(".manage_select_cal").data("store_area") + " .drop_item");
